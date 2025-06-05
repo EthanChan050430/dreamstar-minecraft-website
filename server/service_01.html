@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>星梦生存服 - 经典原版生存体验</title>
+    <link rel="stylesheet" href="server-common.css">
+    <link rel="stylesheet" href="survival-theme.css">
+    <link rel="stylesheet" href="../ai-assistant.css">
+</head>
+<body class="survival-theme">
+    <!-- 动态背景 -->
+    <div class="particle-bg"></div>
+    <div class="particles"></div>    <!-- 导航栏 -->    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">返回主站</a>
+                </li><li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">🎮 切换服务器</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="service_01.html" class="dropdown-link active">🌲 生存服</a></li>
+                        <li><a href="service_02.html" class="dropdown-link">🏝️ 空岛服</a></li>
+                        <li><a href="service_03.html" class="dropdown-link">⚔️ 32K服</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-page="home">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="info">服务器简介</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-page="chat">聊天记录</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 首页 -->
+        <section class="page-section active" data-page-content="home">
+            <div class="glass-card" style="max-width: 1200px; margin: 40px auto; text-align: center;">
+                <h1 class="page-title">🌲 星梦生存服</h1>
+                <p class="page-subtitle">DREAMSTAR SURVIVAL SERVER</p>
+                
+                <div class="server-info-grid">
+                    <div class="info-item">
+                        <div class="info-title">
+                            <span class="status-indicator" data-server-status="online"></span>
+                            服务器状态
+                        </div>                        <div class="info-description">
+                            当前状态：<span data-server-status="online">正常</span><br>
+                            可容纳玩家：<span data-server-status="players">20</span><br>
+                            延迟：<span data-server-status="ping">2ms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-title">🎮 服务器信息</div>
+                        <div class="info-description">
+                            服务器号：<strong>22579118</strong><br>
+                            游戏版本：<span data-server-status="version">我的世界中国版</span><br>
+                            服务器类型：原版生存
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-title">🏆 服务器特色</div>
+                        <div class="info-description">
+                            经典原版生存体验<br>
+                            完善的经济系统<br>
+                            活跃的玩家社区
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="margin-top: 30px;">
+                    <h3 style="color: #6fbf59; margin-bottom: 20px;">🌟 最新动态</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); line-height: 1.6;">
+                        欢迎来到星梦生存服！这里提供最纯正的Minecraft生存体验，
+                        与其他玩家一起建设、探险、交易，创造属于你们的传奇故事。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 服务器简介页面 -->
+        <section class="page-section" data-page-content="info">
+            <div class="glass-card" style="max-width: 1200px; margin: 40px auto;">
+                <h1 class="page-title">🌲 星梦生存服</h1>
+                <p class="page-subtitle">DREAMSTAR SURVIVAL SERVER</p>
+                
+                <div class="glass-card">
+                    <h2 style="color: #6fbf59; margin-bottom: 20px;">📖 服务器介绍</h2>
+                    <div class="info-description" style="font-size: 1.1rem; line-height: 1.8;">
+                        <p>星梦生存服是一个专注于原版Minecraft生存体验的服务器，致力于为玩家提供最纯正、最有趣的游戏环境。</p>
+                        <br>
+                        <p>在这里，你可以：</p>
+                        <ul class="feature-list">
+                            <li>体验最原汁原味的Minecraft生存模式</li>
+                            <li>与志同道合的玩家一起建设宏伟的建筑</li>
+                            <li>参与刺激的探险和挑战活动</li>
+                            <li>在公平的经济系统中进行贸易</li>
+                            <li>加入活跃的社区，结交游戏好友</li>
+                            <li>参与定期举办的建筑比赛和活动</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="server-info-grid">
+                    <div class="info-item">
+                        <div class="info-title">🎯 服务器规则</div>
+                        <div class="info-description">
+                            • 禁止恶意破坏他人建筑<br>
+                            • 禁止使用任何形式的作弊<br>
+                            • 尊重其他玩家，文明游戏<br>
+                            • 遵循服务器经济规则
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-title">🏗️ 建筑特色</div>
+                        <div class="info-description">
+                            • 玩家自由建设区域<br>
+                            • 主城商业中心<br>
+                            • 公共传送点网络<br>
+                            • 展示区和竞赛场地
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-title">💎 经济系统</div>
+                        <div class="info-description">
+                            • 以钻石为主要货币<br>
+                            • 玩家开设的商店<br>
+                            • 定期的市场活动<br>
+                            • 公平的交易环境
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-title">🎪 定期活动</div>
+                        <div class="info-description">
+                            • 每月建筑比赛<br>
+                            • 团队探险活动<br>
+                            • 节日庆典活动<br>
+                            • 新手引导计划
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="margin-top: 30px; text-align: center;">
+                    <h3 style="color: #6fbf59; margin-bottom: 15px;">🚀 快速加入</h3>
+                    <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 20px;">
+                        复制服务器号，在Minecraft中国版中搜索服务器即可开始游戏！
+                    </p>
+                    <div style="background: rgba(0, 0, 0, 0.3); padding: 15px; border-radius: 10px; font-family: monospace; font-size: 1.2rem; color: #6fbf59;">
+                        22579118
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 聊天记录页面 -->
+        <section class="page-section" data-page-content="chat">
+            <div style="max-width: 1000px; margin: 40px auto;">
+                <h1 class="page-title">💬 实时聊天</h1>
+                <p class="page-subtitle">SURVIVAL SERVER CHAT</p>
+                
+                <div class="chat-container glass-card">
+                    <div class="chat-header">
+                        <span class="status-indicator"></span>
+                        生存服聊天记录 - 实时更新
+                    </div>
+                    <div class="chat-messages">
+                        <div class="no-messages">正在加载聊天记录...</div>
+                    </div>
+                    <div class="chat-footer">
+                        聊天记录每5秒自动更新 | 显示最近50条消息
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>    <script src="server-common.js"></script>
+    <script src="../ai-assistant.js"></script>
+    <script>
+        // 初始化生存服页面管理器
+        const survivalServer = new ServerPageManager('星梦1服');
+        
+        // 页面加载时立即更新一次状态显示固定值
+        survivalServer.updateServerStatus();
+    </script>
+</body>
+</html>

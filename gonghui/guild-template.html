@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{GUILD_NAME}} - 星梦服务器</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="guild-styles.css">
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="starry-sky">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="clouds"></div>
+    </div>
+
+    <!-- 导航栏 -->    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">服务器</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../server/survival.html">生存服</a></li>
+                        <li><a href="../server/skyblock.html">空岛服</a></li>
+                        <li><a href="../server/survival32k.html">32k生存服</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">公会</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tianyu.html">天域公会</a></li>
+                        <li><a href="xinghe.html">星河公会</a></li>
+                        <li><a href="cangqiong.html">苍穹公会</a></li>
+                        <li><a href="menghua.html">梦华公会</a></li>
+                        <li><a href="fengyun.html">风云公会</a></li>
+                        <li><a href="longteng.html">龙腾公会</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#contact" class="nav-link">联系我们</a>
+                </li>
+                <li class="nav-item" id="userMenuItem" style="display: none;">
+                    <a href="#" class="nav-link user-menu-toggle" id="userMenuToggle">
+                        <span id="userDisplayName">用户</span> ▼
+                    </a>
+                    <ul class="dropdown-menu user-dropdown">
+                        <li><a href="#" id="logoutLink">退出登录</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" id="loginMenuItem">
+                    <a href="../login/login.html" class="nav-link">登录</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 公会主体内容 -->
+    <main class="guild-main">
+        <!-- 公会标题部分 -->
+        <section class="guild-hero">
+            <div class="guild-hero-content">
+                <div class="guild-title-container">
+                    <h1 class="guild-title">{{GUILD_NAME}}</h1>
+                    <p class="guild-subtitle">{{GUILD_SUBTITLE}}</p>
+                </div>
+                <div class="guild-emblem">
+                    <div class="emblem-container">
+                        <img src="../images/{{GUILD_EMBLEM}}" alt="{{GUILD_NAME}}徽章" class="emblem-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公会信息卡片组 -->
+        <section class="guild-info-cards">
+            <div class="cards-container">
+                <!-- 公会简介卡片 -->
+                <div class="info-card intro-card" data-offset="0">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会简介</h2>
+                            <div class="card-icon">📜</div>
+                        </div>
+                        <div class="card-content">
+                            <p class="guild-description">
+                                {{GUILD_DESCRIPTION}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会成员卡片 -->
+                <div class="info-card members-card" data-offset="1">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">核心成员</h2>
+                            <div class="card-icon">👑</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="members-grid">
+                                {{GUILD_MEMBERS}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会成就卡片 -->
+                <div class="info-card achievements-card" data-offset="2">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会成就</h2>
+                            <div class="card-icon">🏆</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="achievements-list">
+                                {{GUILD_ACHIEVEMENTS}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会活动卡片 -->
+                <div class="info-card activities-card" data-offset="3">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会活动</h2>
+                            <div class="card-icon">🎯</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="activities-timeline">
+                                {{GUILD_ACTIVITIES}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 加入公会卡片 -->
+                <div class="info-card join-card" data-offset="4">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">加入我们</h2>
+                            <div class="card-icon">⚔️</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="join-requirements">
+                                <h3>申请条件</h3>
+                                {{GUILD_REQUIREMENTS}}
+                            </div>
+                            <div class="join-contact">
+                                <h3>联系方式</h3>
+                                <p>公会会长：{{GUILD_LEADER}}</p>
+                                <p>QQ群：{{GUILD_QQ}}</p>
+                            </div>
+                            <button class="join-button" onclick="openJoinModal()">申请加入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公会画廊 -->
+        <section class="guild-gallery">
+            <div class="gallery-container">
+                <h2 class="gallery-title">公会风采</h2>
+                <div class="gallery-grid">
+                    {{GUILD_GALLERY}}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 加入公会模态框 -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content guild-modal">
+            <span class="close">&times;</span>
+            <h2>申请加入{{GUILD_NAME}}</h2>
+            <form id="joinForm" class="join-form">
+                <div class="form-group">
+                    <label for="playerName">游戏昵称</label>
+                    <input type="text" id="playerName" name="playerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="joinReason">申请理由</label>
+                    <textarea id="joinReason" name="joinReason" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contactQQ">联系QQ</label>
+                    <input type="text" id="contactQQ" name="contactQQ" required>
+                </div>
+                <button type="submit" class="submit-btn">提交申请</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 通知系统 -->
+    <div id="notification" class="notification"></div>
+
+    <script src="../script.js"></script>
+    <script src="guild-script.js"></script>
+</body>
+</html>

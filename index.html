@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>星梦服务器官网</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ai-assistant.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>    <!-- 星空背景 -->
+    <div class="starry-sky">
+        <div class="stars"></div>
+        <div class="shooting-stars">
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+        </div>
+    </div>
+
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">            <!-- 左侧导航项 -->
+            <div class="nav-left">
+                <!-- 服务器信息栏 -->
+                <div class="nav-item dropdown">
+                    <span class="nav-link">服务器信息</span>
+                    <div class="dropdown-content">
+                        <a href="#owner-intro">服主介绍</a>
+                        <a href="#server1">1服简介</a>
+                        <a href="#server2">2服简介</a>
+                        <a href="#server3">3服简介</a>
+                    </div>
+                </div>
+                
+                <!-- 服务器官网栏 -->
+                <div class="nav-item dropdown">
+                    <span class="nav-link">服务器官网</span>
+                    <div class="dropdown-content">
+                        <a href="./server/service_01.html">一服官网</a>
+                        <a href="./server/service_02.html">二服官网</a>
+                        <a href="./server/service_03.html">三服官网</a>
+                    </div>
+                </div>                <!-- 服务器公会栏 -->
+                <div class="nav-item dropdown">
+                    <span class="nav-link">公会大全</span>
+                    <div class="dropdown-content">
+                        <a href="./gonghui/index.html">公会大全</a>
+                        <a href="./gonghui/gh_01.html">阿拜多斯公会</a>
+                        <a href="./gonghui/gh_02.html">流量农家乐</a>
+                        <a href="./gonghui/gh_03.html">群鹰之地</a>
+                        <a href="./gonghui/gh_04.html">自由公会</a>
+                        <a href="./gonghui/gh_05.html">理想主义公会</a>
+                        <a href="./gonghui/gh_06.html">背叛公会</a>
+                    </div>
+                </div>
+                
+                <!-- 联系我们 -->
+                <div class="nav-item">
+                    <span class="nav-link" id="contact-btn">联系我们</span>
+                </div>
+            </div>              
+            
+            <!-- 右侧导航项 -->
+            <div class="nav-right">
+                <!-- 登录区域 -->
+                <div class="nav-item login-section">
+                    <!-- 未登录状态 -->
+                    <div id="login-area" class="login-area">
+                        <a href="./login/login.html" class="login-btn">登录</a>
+                    </div>
+                    <!-- 已登录状态 -->
+                    <div id="user-area" class="user-area" style="display: none;">
+                        <div class="user-info dropdown">
+                            <span class="username" id="username-display">用户名</span>
+                            <div class="dropdown-content user-dropdown">
+                                <a href="#" id="logout-btn">注销</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主标题区域 -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="main-title">星梦服务器</h1>
+            <p class="subtitle">Dream Star Server</p>
+        </div>
+    </section>
+
+    <!-- 1服介绍 -->
+    <section id="server1" class="server-section server1">
+        <div class="server-content">
+            <h2 class="server-title">星梦服务器1服</h2>
+            <p class="server-subtitle">生存服：22579118</p>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-slides" id="carousel1">
+                        <div class="slide active">
+                            <div class="slide-content">
+                                <img src="images/server1-1.jpg" alt="1服设施1" class="slide-image">
+                                <h3>主城区域</h3>
+                                <p>于此，史诗级主城拔地而起，融汇万千奇能，铸就玩家心之所向的荣耀集结地。</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-content">
+                                <img src="images/server1-2.jpg" alt="1服设施2" class="slide-image">
+                                <h3>商业中心</h3>
+                                <p>流光溢彩的商业中枢，财富与机遇在此交织，每一次交易皆为传奇的序章。</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-content">
+                                <img src="images/server1-3.jpg" alt="1服设施3" class="slide-image">
+                                <h3>原版生存</h3>
+                                <p>坚守纯粹，传承经典。档案恒久远，除非宇宙洪荒，誓不重置，守护您的每一份心血。</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-content">
+                                <img src="images/server1-4.jpg" alt="1服设施4" class="slide-image">
+                                <h3>冒险区域</h3>
+                                <p>无尽的未知疆域，深藏着荣耀与秘辛，勇敢的灵魂将在此镌刻不朽的传说。</p>
+                            </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next-btn" onclick="nextSlide('carousel1')">→</button>
+                <button class="carousel-btn prev-btn" onclick="prevSlide('carousel1')">←</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2服介绍 -->
+    <section id="server2" class="server-section server2">
+        <div class="server-content">
+            <h2 class="server-title">星梦服务器2服</h2>
+            <p class="server-subtitle">空岛服：58390329</p>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-slides" id="carousel2">
+                        <div class="slide active">
+                            <div class="slide-content">
+                                <img src="images/server2-1.jpg" alt="2服设施1" class="slide-image">
+                                <h3>空岛大厅</h3>
+                                <p>悬浮于苍穹之上的殿堂，是连接云端万界的枢纽，亦是您空岛霸业的起点。</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-content">
+                                <img src="images/server2-2.jpg" alt="2服设施2" class="slide-image">
+                                <h3>个人空岛</h3>
+                                <p>于云海之上，构筑您的专属领地，一砖一瓦皆由您定义，成就独一无二的空中王国。</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-content">
+                                <img src="images/server2-3.jpg" alt="2服设施3" class="slide-image">
+                                <h3>便捷商店</h3>
+                                <p>言出法随，意念交易。弹指间，珍奇异宝尽入囊中，财富流通如行云流水。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next-btn" onclick="nextSlide('carousel2')">→</button>
+                <button class="carousel-btn prev-btn" onclick="prevSlide('carousel2')">←</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3服介绍 -->
+    <section id="server3" class="server-section server3">
+        <div class="server-content">
+            <h2 class="server-title">星梦服务器3服</h2>
+            <p class="server-subtitle">32k生存服：33027226</p>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <div class="carousel-slides" id="carousel3">
+                        <div class="slide active">
+                            <div class="slide-content">
+                                <img src="images/server3-1.jpg" alt="3服设施1" class="slide-image">
+                                <h3>主  城</h3>
+                                <p>此乃万象之核，未来之始。"主城，不设峰顶，唯创纪元。"——于此，寰宇视野与东方哲思交辉，每一次停驻皆为与时代先锋的深度对谈，每一次启航均将重塑文明的里程碑。</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-content">
+                                <img src="images/server3-2.jpg" alt="3服设施2" class="slide-image">
+                                <h3>购物中心</h3>
+                                <p>于此，光阴凝炼为至臻奢华的尺度，场域拓展为卓绝雅致的T台。世界级品牌以艺术典范之态云集，每件臻品皆为现代美学的精妙注脚。专属管家服务如影相伴，将您的卓识雅鉴升华为无与伦比的尊荣礼遇。从米其林星级飨宴至高级定制工坊，从天际酒廊至私享艺术展，我们重新诠释“购物”——它已超越单纯的消费行为，升华为对巅峰生活美学的虔诚巡礼。</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-content">
+                                <img src="images/server3-3.jpg" alt="3服设施3" class="slide-image">
+                                <h3>32k</h3>
+                                <p>神兵利器，匠心独运。在此秘境，您可寻获传说中的32K神兵与万能工具，助您驰骋沙场，所向披靡。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next-btn" onclick="nextSlide('carousel3')">→</button>
+                <button class="carousel-btn prev-btn" onclick="prevSlide('carousel3')">←</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服主介绍区域 -->
+    <section id="owner-intro" class="owner-section">
+        <div class="owner-content">
+            <h2>服主介绍</h2>
+            <div class="owner-info">
+                <div class="owner-avatar">
+                    <img src="images/owner-avatar.jpg" alt="服主头像">
+                </div>
+                <div class="owner-details">
+                    <h3>七神云昊天</h3>
+                    <p>星梦服务器的创始人，致力于为玩家打造最佳的游戏体验。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-info">
+                <p><strong>服主：</strong>七神云昊天</p>
+                <p><strong>运营：</strong>帥気的男主角</p>
+            </div>
+            <div class="footer-links">
+                <a href="service_01.html" class="footer-link">星梦服务器1服官网</a>
+                <a href="service_02.html" class="footer-link">星梦服务器2服官网</a>
+                <a href="service_03.html" class="footer-link">星梦服务器3服官网</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 联系我们弹窗 -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <img src="images/QQ_qun.jpg" alt="加群二维码" class="contact-image">
+        </div>    </div>
+
+    <script src="script.js"></script>
+    <script src="ai-assistant.js"></script>
+</body>
+</html>

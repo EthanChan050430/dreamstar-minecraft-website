@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>流量农家乐 - 星梦服务器</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="guild-styles.css">
+    <link rel="stylesheet" href="../ai-assistant.css">
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="starry-sky">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="clouds"></div>
+    </div>
+
+    <!-- 导航栏 -->    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">服务器</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../server/service_01.html">生存服</a></li>
+                        <li><a href="../server/service_02.html">空岛服</a></li>
+                        <li><a href="../server/service_03.html">32k生存服</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">公会</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gh_01.html">阿拜多斯公会</a></li>
+                        <li><a href="gh_02.html" class="active">流量农家乐</a></li>
+                        <li><a href="gh_03.html">群鹰之地</a></li>
+                        <li><a href="gh_04.html">自由公会</a></li>
+                        <li><a href="gh_05.html">理想主义公会</a></li>
+                        <li><a href="gh_06.html">背叛公会</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#contact" class="nav-link">联系我们</a>
+                </li>
+                <li class="nav-item" id="userMenuItem" style="display: none;">
+                    <a href="#" class="nav-link user-menu-toggle" id="userMenuToggle">
+                        <span id="userDisplayName">用户</span> ▼
+                    </a>
+                    <ul class="dropdown-menu user-dropdown">
+                        <li><a href="#" id="logoutLink">退出登录</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" id="loginMenuItem">
+                    <a href="../login/login.html" class="nav-link">登录</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 公会主体内容 -->
+    <main class="guild-main">
+        <!-- 公会标题部分 -->
+        <section class="guild-hero">
+            <div class="guild-hero-content">
+                <div class="guild-title-container">
+                    <h1 class="guild-title">流量农家乐</h1>
+                    <p class="guild-subtitle">流量为田，乐在其中</p>
+                </div>
+                <div class="guild-emblem">
+                    <div class="emblem-container">
+                        <img src="../images/liuliang-emblem.png" alt="流量农家乐徽章" class="emblem-image" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'color:#4caf50;font-size:60px;line-height:150px;\'>🌾</div>'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公会信息卡片组 -->
+        <section class="guild-info-cards">
+            <div class="cards-container">
+                <!-- 公会简介卡片 -->
+                <div class="info-card intro-card" data-offset="0">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会简介</h2>
+                            <div class="card-icon">📜</div>
+                        </div>
+                        <div class="card-content">
+                            <p class="guild-description">
+                                流量农家乐，星梦服务器最具人情味与创意的休闲公会。我们以“流量为田，乐在其中”为宗旨，欢迎每一位热爱生活、喜欢交友、乐于分享的玩家加入。这里没有复杂的规矩，只有轻松的氛围和温暖的陪伴。无论你是种田达人、建筑能手，还是社交小能手，都能在这里找到属于自己的乐趣。我们相信，最美好的回忆，来自于一起耕耘、一起欢笑的每一天！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会成员卡片 -->
+                <div class="info-card members-card" data-offset="1">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">核心成员</h2>
+                            <div class="card-icon">👨‍🌾</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="members-grid">
+                                <div class="member-item">
+                                    <div class="member-name">琉璃ama</div>
+                                    <div class="member-role">公会会长</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">流量监控URL</div>
+                                    <div class="member-role">死人</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">偃玥愕然</div>
+                                    <div class="member-role">成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">研每</div>
+                                    <div class="member-role">成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">却又舍不得你</div>
+                                    <div class="member-role">成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">可爱的酱酱</div>
+                                    <div class="member-role">成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">君籇</div>
+                                    <div class="member-role">成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">影之原神</div>
+                                    <div class="member-role">成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">喜欢你呀BB</div>
+                                    <div class="member-role">成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">Mskwiow</div>
+                                    <div class="member-role">成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">可爱小黄蛋仔</div>
+                                    <div class="member-role">成员</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会成就卡片 -->
+                <div class="info-card achievements-card" data-offset="2">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会成就</h2>
+                            <div class="card-icon">🥇</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="achievements-list">
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">🏡</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">田园乐园</div>
+                                        <div class="achievement-desc">打造了服务器最温馨的农家乐聚落</div>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">🌾</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">丰收之星</div>
+                                        <div class="achievement-desc">多次获得服务器农作物大赛冠军</div>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">🎉</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">最欢乐公会</div>
+                                        <div class="achievement-desc">举办了最多样化的公会活动</div>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">🤝</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">友谊桥梁</div>
+                                        <div class="achievement-desc">结识了最多的跨服好友</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会活动卡片 -->
+                <div class="info-card activities-card" data-offset="3">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会活动</h2>
+                            <div class="card-icon">🎊</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="activities-timeline">
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年1月20日</div>
+                                    <div class="activity-title">新年农田大作战</div>
+                                    <div class="activity-desc">全员参与农田扩建与装饰比赛</div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年3月8日</div>
+                                    <div class="activity-title">春日采摘节</div>
+                                    <div class="activity-desc">举办春季采摘与美食分享会</div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年4月13日</div>
+                                    <div class="activity-title">田园运动会</div>
+                                    <div class="activity-desc">趣味农场运动项目大比拼</div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年5月1日</div>
+                                    <div class="activity-title">劳动节农家乐派对</div>
+                                    <div class="activity-desc">全服玩家共庆劳动节，体验农家生活</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 加入公会卡片 -->
+                <div class="info-card join-card" data-offset="4">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">加入我们</h2>
+                            <div class="card-icon">🌱</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="join-requirements">
+                                <h3>申请条件</h3>
+                                <ul>
+                                    <li>热爱生活，乐于交友</li>
+                                    <li>喜欢种田、建筑或社交</li>
+                                    <li>愿意参与公会活动</li>
+                                    <li>遵守服务器基本规则</li>
+                                    <li>有一颗乐观开朗的心</li>
+                                </ul>
+                            </div>
+                            <div class="join-contact">
+                                <h3>联系方式</h3>
+                                <p>公会会长：琉璃ama</p>
+                                <p>QQ：未知</p>
+                            </div>
+                            <button class="join-button" onclick="openJoinModal()">申请加入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公会画廊 -->
+        <!-- 已删除公会风采内容 -->
+    </main>
+
+    <!-- 加入公会模态框 -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content guild-modal">
+            <span class="close">&times;</span>
+            <h2>申请加入流量农家乐</h2>
+            <form id="joinForm" class="join-form">
+                <div class="form-group">
+                    <label for="playerName">游戏昵称</label>
+                    <input type="text" id="playerName" name="playerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="joinReason">申请理由</label>
+                    <textarea id="joinReason" name="joinReason" rows="4" required placeholder="请简单介绍您的游戏经历和加入公会的理由..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contactQQ">联系QQ</label>
+                    <input type="text" id="contactQQ" name="contactQQ" required>
+                </div>
+                <button type="submit" class="submit-btn">提交申请</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 通知系统 -->
+    <div id="notification" class="notification"></div>    <script src="../script.js"></script>
+    <script src="guild-script.js"></script>
+    <script src="../ai-assistant.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>阿拜多斯公会 - 星梦服务器</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="guild-styles.css">
+    <link rel="stylesheet" href="../ai-assistant.css">
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="starry-sky">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="clouds"></div>
+    </div>
+
+    <!-- 导航栏 -->    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">服务器</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../server/service_01.html">生存服</a></li>
+                        <li><a href="../server/service_02.html">空岛服</a></li>
+                        <li><a href="../server/service_03.html">32k生存服</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">公会</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gh_01.html">阿拜多斯公会</a></li>
+                        <li><a href="gh_02.html">流量农家乐</a></li>
+                        <li><a href="gh_03.html">群鹰之地</a></li>
+                        <li><a href="gh_04.html">自由公会</a></li>
+                        <li><a href="gh_05.html">理想主义公会</a></li>
+                        <li><a href="gh_06.html" class="active">背叛公会</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#contact" class="nav-link">联系我们</a>
+                </li>
+                <li class="nav-item" id="userMenuItem" style="display: none;">
+                    <a href="#" class="nav-link user-menu-toggle" id="userMenuToggle">
+                        <span id="userDisplayName">用户</span> ▼
+                    </a>
+                    <ul class="dropdown-menu user-dropdown">
+                        <li><a href="#" id="logoutLink">退出登录</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" id="loginMenuItem">
+                    <a href="../login/login.html" class="nav-link">登录</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 公会主体内容 -->
+    <main class="guild-main">
+        <!-- 公会标题部分 -->
+        <section class="guild-hero">
+            <div class="guild-hero-content">
+                <div class="guild-title-container">
+                    <h1 class="guild-title">阿拜多斯公会</h1>
+                    <p class="guild-subtitle">自由、团结、探索无限</p>
+                </div>
+                <div class="guild-emblem">
+                    <div class="emblem-container">
+                        <img src="../images/abydos-emblem.png" alt="阿拜多斯公会徽章" class="emblem-image" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'color:#ffd700;font-size:60px;line-height:150px;\'>🏫</div>'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公会信息卡片组 -->
+        <section class="guild-info-cards">
+            <div class="cards-container">
+                <!-- 公会简介卡片 -->
+                <div class="info-card intro-card" data-offset="0">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会简介</h2>
+                            <div class="card-icon">📜</div>
+                        </div>
+                        <div class="card-content">
+                            <p class="guild-description">
+                                阿拜多斯公会，作为星梦服务器最具包容性与创造力的公会之一，致力于为每一位成员提供温暖的归属感和广阔的成长空间。我们崇尚自由、团结与探索精神，鼓励成员在游戏世界中勇于创新、互帮互助。无论你是建筑大师、冒险勇士还是休闲玩家，这里都能找到属于你的舞台。加入阿拜多斯公会，与志同道合的伙伴们一起书写属于我们的星梦传奇！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会成员卡片 -->
+                <div class="info-card members-card" data-offset="1">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">核心成员</h2>
+                            <div class="card-icon">👑</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="members-grid">
+                                <div class="member-item">
+                                    <div class="member-name">星野ava</div>
+                                    <div class="member-role">公会会长</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">一只小鳄鱼</div>
+                                    <div class="member-role">副会长</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">呼啦啦小紫苏</div>
+                                    <div class="member-role">成员</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会成就卡片 -->
+                <div class="info-card achievements-card" data-offset="2">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会成就</h2>
+                            <div class="card-icon">🏆</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="achievements-list">
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">🏰</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">阿拜多斯学园</div>
+                                        <div class="achievement-desc">建成服务器最具特色的校园建筑群</div>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">🤝</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">团结互助</div>
+                                        <div class="achievement-desc">组织多次大型合作活动，促进成员交流</div>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">🌈</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">创意无限</div>
+                                        <div class="achievement-desc">举办创意建筑大赛，涌现众多优秀作品</div>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">🎉</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">活跃社区</div>
+                                        <div class="achievement-desc">公会成员活跃度长期位居服务器前列</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会活动卡片 -->
+                <div class="info-card activities-card" data-offset="3">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会活动</h2>
+                            <div class="card-icon">🎯</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="activities-timeline">
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年3月10日</div>
+                                    <div class="activity-title">春季校园节</div>
+                                    <div class="activity-desc">举办了丰富多彩的校园主题活动</div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年4月5日</div>
+                                    <div class="activity-title">合作建筑赛</div>
+                                    <div class="activity-desc">成员分组协作完成大型建筑项目</div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年5月1日</div>
+                                    <div class="activity-title">自由探索日</div>
+                                    <div class="activity-desc">鼓励成员自由组队探索服务器新区域</div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年5月20日</div>
+                                    <div class="activity-title">友谊联赛</div>
+                                    <div class="activity-desc">与其他公会联合举办友谊竞赛</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 加入公会卡片 -->
+                <div class="info-card join-card" data-offset="4">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">加入我们</h2>
+                            <div class="card-icon">⚔️</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="join-requirements">
+                                <h3>申请条件</h3>
+                                <ul>
+                                    <li>热爱团队合作</li>
+                                    <li>尊重他人，遵守公会规则</li>
+                                    <li>积极参与公会活动</li>
+                                    <li>有一定的创造力或冒险精神</li>
+                                </ul>
+                            </div>
+                            <div class="join-contact">
+                                <h3>联系方式</h3>
+                                <p>公会会长：星野酱ava</p>
+                                <p>QQ：2726814349</p>
+                            </div>
+                            <button class="join-button" onclick="openJoinModal()">申请加入</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公会画廊 -->
+        <!-- 已删除公会风采内容 -->
+    </main>
+
+    <!-- 加入公会模态框 -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content guild-modal">
+            <span class="close">&times;</span>
+            <h2>申请加入龙腾公会</h2>
+            <form id="joinForm" class="join-form">
+                <div class="form-group">
+                    <label for="playerName">游戏昵称</label>
+                    <input type="text" id="playerName" name="playerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="joinReason">申请理由</label>
+                    <textarea id="joinReason" name="joinReason" rows="4" required placeholder="请简单介绍您的游戏经历和加入公会的理由..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contactQQ">联系QQ</label>
+                    <input type="text" id="contactQQ" name="contactQQ" required>
+                </div>
+                <button type="submit" class="submit-btn">提交申请</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 通知系统 -->
+    <div id="notification" class="notification"></div>    <script src="../script.js"></script>
+    <script src="guild-script.js"></script>
+    <script src="../ai-assistant.js"></script>
+</body>
+</html>

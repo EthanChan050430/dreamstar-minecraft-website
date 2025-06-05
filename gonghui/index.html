@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>公会大全 - 星梦服务器</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="guild-overview.css">
+    <link rel="stylesheet" href="../ai-assistant.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="starry-sky">
+        <div class="stars"></div>
+        <div class="shooting-stars">
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+            <div class="shooting-star"></div>
+        </div>
+    </div>
+
+    <!-- 顶部导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- 左侧导航项 -->
+            <div class="nav-left">
+                <!-- 服务器信息栏 -->
+                <div class="nav-item dropdown">
+                    <span class="nav-link">服务器信息</span>
+                    <div class="dropdown-content">
+                        <a href="../index.html#owner-intro">服主介绍</a>
+                        <a href="../index.html#server1">1服简介</a>
+                        <a href="../index.html#server2">2服简介</a>
+                        <a href="../index.html#server3">3服简介</a>
+                    </div>
+                </div>
+                
+                <!-- 服务器官网栏 -->
+                <div class="nav-item dropdown">
+                    <span class="nav-link">服务器官网</span>
+                    <div class="dropdown-content">
+                        <a href="../server/service_01.html">一服官网</a>
+                        <a href="../server/service_02.html">二服官网</a>
+                        <a href="../server/service_03.html">三服官网</a>
+                    </div>
+                </div>
+
+                <!-- 服务器公会栏 -->
+                <div class="nav-item dropdown">
+                    <span class="nav-link active">服务器公会</span>
+                    <div class="dropdown-content">
+                        <a href="index.html" class="active">公会大全</a>
+                        <a href="gh_01.html">阿拜多斯公会</a>
+                        <a href="gh_02.html">流量农家乐</a>
+                        <a href="gh_03.html">群鹰之地</a>
+                        <a href="gh_04.html">自由公会</a>
+                        <a href="gh_05.html">理想主义公会</a>
+                        <a href="gh_06.html">背叛公会</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- 右侧导航项 -->
+            <div class="nav-right">
+                <!-- 登录栏 -->
+                <div class="nav-item dropdown">
+                    <span class="nav-link user-auth" data-action="login">登录</span>
+                    <div class="dropdown-content user-menu" style="display: none;">
+                        <a href="#profile">个人中心</a>
+                        <a href="#settings">设置</a>
+                        <a href="#" class="logout-btn">退出登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main class="main-content">
+        <!-- 页面标题 -->
+        <section class="page-header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="page-title">公会大全</h1>
+                    <p class="page-subtitle">加入星梦服务器的精英公会，开启你的传奇征程</p>
+                    <div class="guild-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">活跃公会</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">300+</span>
+                            <span class="stat-label">公会成员</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">在线活动</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>        <!-- 公会展示区域 -->
+        <section class="guilds-showcase">
+            <div class="container">
+                <!-- 搜索和筛选工具栏 -->
+                <div class="guild-toolbar">
+                    <div class="search-container">
+                        <input type="text" id="guildSearch" placeholder="搜索公会名称、口号或标签..." class="search-input">
+                        <button class="search-btn" onclick="searchGuilds(document.getElementById('guildSearch').value)">
+                            <span class="search-icon">🔍</span>
+                        </button>
+                    </div>
+                    <div class="filter-container">
+                        <select id="levelFilter" class="filter-select" onchange="applyFilters()">
+                            <option value="">所有等级</option>
+                            <option value="8">Lv.8+</option>
+                            <option value="7">Lv.7+</option>
+                            <option value="6">Lv.6+</option>
+                        </select>
+                        <select id="sortBy" class="filter-select" onchange="sortGuilds(this.value)">
+                            <option value="">默认排序</option>
+                            <option value="level">按等级排序</option>
+                            <option value="members">按成员数排序</option>
+                            <option value="name">按名称排序</option>
+                        </select>
+                        <button class="reset-btn" onclick="resetFilters()">重置</button>
+                    </div>
+                </div>
+                
+                
+                <div class="guilds-grid">
+                    <!-- 天域公会 -->
+                    <div class="guild-card" data-guild="tianyu">
+                        <div class="guild-card-inner">
+                            <div class="guild-pattern"></div>
+                            <div class="guild-emblem">
+                                <div class="emblem-glow"></div>
+                                <div class="emblem-icon">BA</div>
+                            </div>
+                            <div class="guild-content">
+                                <h3 class="guild-name">阿拜多斯公会</h3>
+                                <p class="guild-motto">"对策委员会全员出击"</p>
+                                <div class="guild-info">
+                                    <div class="info-item">
+                                        <span class="info-label">会长</span>
+                                        <span class="info-value">星野酱ava</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">成员</span>
+                                        <span class="info-value">14人</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">等级</span>
+                                        <span class="info-value">Lv.8</span>
+                                    </div>
+                                </div>
+                                <div class="guild-tags">
+                                    <span class="tag">精英</span>
+                                    <span class="tag">建筑</span>
+                                    <span class="tag">团队</span>
+                                </div>
+                                <div class="guild-actions">
+                                    <a href="tianyu.html" class="btn btn-primary">查看详情</a>
+                                    <button class="btn btn-secondary" onclick="openJoinModal('tianyu')">申请加入</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 星河公会 -->
+                    <div class="guild-card" data-guild="xinghe">
+                        <div class="guild-card-inner">
+                            <div class="guild-pattern"></div>
+                            <div class="guild-emblem">
+                                <div class="emblem-glow"></div>
+                                <div class="emblem-icon">流量</div>
+                            </div>
+                            <div class="guild-content">
+                                <h3 class="guild-name">流量农家乐</h3>
+                                <p class="guild-motto">"打卡圣地，休闲养老"</p>
+                                <div class="guild-info">
+                                    <div class="info-item">
+                                        <span class="info-label">会长</span>
+                                        <span class="info-value">琉璃ama</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">成员</span>
+                                        <span class="info-value">16人</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">等级</span>
+                                        <span class="info-value">Lv.17</span>
+                                    </div>
+                                </div>
+                                <div class="guild-tags">
+                                    <span class="tag">养老</span>
+                                    <span class="tag">休闲</span>
+                                    <span class="tag">友善</span>
+                                </div>
+                                <div class="guild-actions">
+                                    <a href="xinghe.html" class="btn btn-primary">查看详情</a>
+                                    <button class="btn btn-secondary" onclick="openJoinModal('xinghe')">申请加入</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="guild-card" data-guild="cangqiong">
+                        <div class="guild-card-inner">
+                            <div class="guild-pattern"></div>
+                            <div class="guild-emblem">
+                                <div class="emblem-glow"></div>
+                                <div class="emblem-icon">群鹰</div>
+                            </div>
+                            <div class="guild-content">
+                                <h3 class="guild-name">群鹰之地</h3>
+                                <p class="guild-motto">"御风而行，翱翔苍穹"</p>
+                                <div class="guild-info">
+                                    <div class="info-item">
+                                        <span class="info-label">会长</span>
+                                        <span class="info-value">悔恨天沧</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">成员</span>
+                                        <span class="info-value">11人</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">等级</span>
+                                        <span class="info-value">Lv.11</span>
+                                    </div>
+                                </div>
+                                <div class="guild-tags">
+                                    <span class="tag">速度</span>
+                                    <span class="tag">团结</span>
+                                    <span class="tag">建筑</span>
+                                </div>
+                                <div class="guild-actions">
+                                    <a href="cangqiong.html" class="btn btn-primary">查看详情</a>
+                                    <button class="btn btn-secondary" onclick="openJoinModal('cangqiong')">申请加入</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 梦华公会 -->
+                    <div class="guild-card" data-guild="menghua">
+                        <div class="guild-card-inner">
+                            <div class="guild-pattern"></div>
+                            <div class="guild-emblem">
+                                <div class="emblem-glow"></div>
+                                <div class="emblem-icon">理想</div>
+                            </div>
+                            <div class="guild-content">
+                                <h3 class="guild-name">理想主义公会</h3>
+                                <p class="guild-motto">"绮梦如华，美轮美奂"</p>
+                                <div class="guild-info">
+                                    <div class="info-item">
+                                        <span class="info-label">会长</span>
+                                        <span class="info-value">摩芋根</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">成员</span>
+                                        <span class="info-value">6人</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">等级</span>
+                                        <span class="info-value">Lv.6</span>
+                                    </div>
+                                </div>
+                                <div class="guild-tags">
+                                    <span class="tag">艺术</span>
+                                    <span class="tag">创造</span>
+                                    <span class="tag">和谐</span>
+                                </div>
+                                <div class="guild-actions">
+                                    <a href="menghua.html" class="btn btn-primary">查看详情</a>
+                                    <button class="btn btn-secondary" onclick="openJoinModal('menghua')">申请加入</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 风云公会 -->
+                    <div class="guild-card" data-guild="fengyun">
+                        <div class="guild-card-inner">
+                            <div class="guild-pattern"></div>
+                            <div class="guild-emblem">
+                                <div class="emblem-glow"></div>
+                                <div class="emblem-icon">自由</div>
+                            </div>
+                            <div class="guild-content">
+                                <h3 class="guild-name">自由公会</h3>
+                                <p class="guild-motto">"愿做自由的一阵风"</p>
+                                <div class="guild-info">
+                                    <div class="info-item">
+                                        <span class="info-label">会长</span>
+                                        <span class="info-value">星晓晨152</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">成员</span>
+                                        <span class="info-value">18人</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">等级</span>
+                                        <span class="info-value">Lv.15</span>
+                                    </div>
+                                </div>
+                                <div class="guild-tags">
+                                    <span class="tag">战略</span>
+                                    <span class="tag">统治</span>
+                                    <span class="tag">霸气</span>
+                                </div>
+                                <div class="guild-actions">
+                                    <a href="fengyun.html" class="btn btn-primary">查看详情</a>
+                                    <button class="btn btn-secondary" onclick="openJoinModal('fengyun')">申请加入</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 龙腾公会 -->
+                    <div class="guild-card" data-guild="longteng">
+                        <div class="guild-card-inner">
+                            <div class="guild-pattern"></div>
+                            <div class="guild-emblem">
+                                <div class="emblem-glow"></div>
+                                <div class="emblem-icon">傻逼</div>
+                            </div>
+                            <div class="guild-content">
+                                <h3 class="guild-name">背叛公会</h3>
+                                <p class="guild-motto">"烧杀抢虐，傻逼必来"</p>
+                                <div class="guild-info">
+                                    <div class="info-item">
+                                        <span class="info-label">会长</span>
+                                        <span class="info-value">修噬星</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">成员</span>
+                                        <span class="info-value">1人</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="info-label">等级</span>
+                                        <span class="info-value">Lv.-114514</span>
+                                    </div>
+                                </div>
+                                <div class="guild-tags">
+                                    <span class="tag">唐</span>
+                                    <span class="tag">废物</span>
+                                    <span class="tag">垃圾</span>
+                                </div>
+                                <div class="guild-actions">
+                                    <a href="longteng.html" class="btn btn-primary">查看详情</a>
+                                    <button class="btn btn-secondary" onclick="openJoinModal('longteng')">申请加入</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公会排行榜 -->
+        <section class="guild-rankings">
+            <div class="container">
+                <h2 class="section-title">公会排行榜</h2>
+                <div class="rankings-container">
+                    <div class="ranking-item" data-rank="1">
+                        <div class="rank-number">1</div>
+                        <div class="rank-content">
+                            <div class="rank-guild">流量农家乐</div>
+                            <div class="rank-score">9850分</div>
+                        </div>
+                        <div class="rank-medal gold"></div>
+                    </div>
+                    <div class="ranking-item" data-rank="2">
+                        <div class="rank-number">2</div>
+                        <div class="rank-content">
+                            <div class="rank-guild">自由公会</div>
+                            <div class="rank-score">9720分</div>
+                        </div>
+                        <div class="rank-medal silver"></div>
+                    </div>
+                    <div class="ranking-item" data-rank="3">
+                        <div class="rank-number">3</div>
+                        <div class="rank-content">
+                            <div class="rank-guild">群鹰之地</div>
+                            <div class="rank-score">9680分</div>
+                        </div>
+                        <div class="rank-medal bronze"></div>
+                    </div>
+                    <div class="ranking-item" data-rank="4">
+                        <div class="rank-number">4</div>
+                        <div class="rank-content">
+                            <div class="rank-guild">理想主义公会</div>
+                            <div class="rank-score">9550分</div>
+                        </div>
+                    </div>
+                    <div class="ranking-item" data-rank="5">
+                        <div class="rank-number">5</div>
+                        <div class="rank-content">
+                            <div class="rank-guild">阿拜多斯公会</div>
+                            <div class="rank-score">9420分</div>
+                        </div>
+                    </div>
+                    <div class="ranking-item" data-rank="6">
+                        <div class="rank-number">6</div>
+                        <div class="rank-content">
+                            <div class="rank-guild">背叛公会</div>
+                            <div class="rank-score">-114514分</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 申请加入模态框 -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>申请加入公会</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="joinForm">
+                    <div class="form-group">
+                        <label for="playerName">游戏昵称</label>
+                        <input type="text" id="playerName" name="playerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="playerLevel">角色等级</label>
+                        <input type="number" id="playerLevel" name="playerLevel" min="1" max="999" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serverChoice">所在服务器</label>
+                        <select id="serverChoice" name="serverChoice" required>
+                            <option value="">请选择服务器</option>
+                            <option value="server1">一服</option>
+                            <option value="server2">二服</option>
+                            <option value="server3">三服</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">游戏经验</label>
+                        <textarea id="experience" name="experience" placeholder="简单介绍一下你的游戏经验和专长..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">申请理由</label>
+                        <textarea id="reason" name="reason" placeholder="为什么想要加入这个公会？"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeJoinModal()">取消</button>
+                        <button type="submit" class="btn btn-primary">提交申请</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>    <!-- 引入脚本 -->
+    <script src="../scripts.js"></script>
+    <script src="guild-overview.js"></script>
+    <script src="../ai-assistant.js"></script>
+</body>
+</html>

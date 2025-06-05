@@ -1,0 +1,145 @@
+/* 空岛服专用样式 - 天空蓝主题 */
+.skyblock-theme {
+    --primary-color: #1e3a8a;
+    --secondary-color: #3b82f6;
+    --accent-color: #60a5fa;
+    --text-color: #fff;
+    --glow-color: #60a5fa;
+}
+
+.skyblock-theme .particle-bg {
+    background: linear-gradient(45deg, #0c1445, #1e3a8a, #3730a3);
+    background-size: 400% 400%;
+}
+
+.skyblock-theme .page-title {
+    background: linear-gradient(45deg, #3b82f6, #60a5fa, #93c5fd);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.skyblock-theme .glass-card {
+    background: rgba(30, 58, 138, 0.2);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    box-shadow: 0 8px 32px rgba(30, 58, 138, 0.3);
+}
+
+.skyblock-theme .nav-link.active {
+    background: linear-gradient(45deg, #3b82f6, #60a5fa);
+}
+
+/* 空岛特色元素 */
+.cloud-decoration {
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 40px;
+    opacity: 0.6;
+    animation: float 6s ease-in-out infinite;
+}
+
+.cloud-decoration::before,
+.cloud-decoration::after {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.cloud-decoration::before {
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 10px;
+}
+
+.cloud-decoration::after {
+    width: 60px;
+    height: 60px;
+    top: -35px;
+    right: 15px;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* 空岛服特色样式覆盖 */
+.skyblock-theme .info-item {
+    border-color: rgba(96, 165, 250, 0.3);
+}
+
+.skyblock-theme .info-item:hover {
+    background: rgba(96, 165, 250, 0.12);
+    border-color: rgba(96, 165, 250, 0.5);
+}
+
+.skyblock-theme .info-title {
+    color: #60a5fa;
+}
+
+.skyblock-theme .feature-list li::before {
+    content: '☁️';
+}
+
+.skyblock-theme .chat-header {
+    background: linear-gradient(45deg, #3b82f6, #60a5fa);
+}
+
+.skyblock-theme .chat-message {
+    border-left: 4px solid #60a5fa;
+}
+
+.skyblock-theme .chat-player {
+    color: #60a5fa;
+}
+
+.skyblock-theme .status-indicator {
+    background: #60a5fa;
+}
+
+.skyblock-theme .status-indicator {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(96, 165, 250, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(96, 165, 250, 0);
+    }
+}
+
+/* 天空岛屿效果 */
+.island-effect {
+    position: relative;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(96, 165, 250, 0.1));
+    border-radius: 20px;
+    border: 2px solid rgba(96, 165, 250, 0.3);
+    overflow: hidden;
+}
+
+.island-effect::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

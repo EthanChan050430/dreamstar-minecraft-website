@@ -1,0 +1,995 @@
+/* 重置样式 */
+* {
+    margin: 0;
+    padding: 0;    box-sizing: border-box;
+}
+
+/* 星空背景效果 */
+.starry-sky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    z-index: -2;
+}
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.stars::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #ddd, transparent),
+        radial-gradient(1px 1px at 80px 10px, rgba(255,255,255,0.9), transparent),
+        radial-gradient(2px 2px at 180px 60px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: stars-move 100s linear infinite, stars-twinkle 4s ease-in-out infinite alternate;
+}
+
+.stars::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 50px 50px, #fff, transparent),
+        radial-gradient(2px 2px at 100px 25px, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 150px 75px, #eee, transparent);
+    background-repeat: repeat;
+    background-size: 300px 150px;
+    animation: stars-move 150s linear infinite reverse;
+}
+
+/* 流星效果 */
+.shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.shooting-star {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 30%, rgba(255,255,255,0.3) 70%, transparent 100%);
+    transform: rotate(-45deg);
+    animation: shooting 4s linear infinite;
+    opacity: 0;
+    border-radius: 1px;
+    box-shadow: 0 0 4px rgba(255,255,255,0.5);
+}
+
+.shooting-star:nth-child(1) {
+    top: -50px;
+    right: -150px;
+    width: 150px;
+    animation-delay: 0s;
+    animation-duration: 3.5s;
+}
+
+.shooting-star:nth-child(2) {
+    top: -20px;
+    right: -200px;
+    width: 120px;
+    animation-delay: 2s;
+    animation-duration: 4s;
+}
+
+.shooting-star:nth-child(3) {
+    top: 10%;
+    right: -180px;
+    width: 180px;
+    animation-delay: 4.5s;
+    animation-duration: 3.2s;
+}
+
+.shooting-star:nth-child(4) {
+    top: 20%;
+    right: -160px;
+    width: 140px;
+    animation-delay: 7s;
+    animation-duration: 3.8s;
+}
+
+.shooting-star:nth-child(5) {
+    top: 30%;
+    right: -190px;
+    width: 170px;
+    animation-delay: 9.5s;
+    animation-duration: 3.3s;
+}
+
+.shooting-star:nth-child(6) {
+    top: 40%;
+    right: -130px;
+    width: 110px;
+    animation-delay: 12s;
+    animation-duration: 4.2s;
+}
+
+.shooting-star:nth-child(7) {
+    top: -30px;
+    right: -170px;
+    width: 160px;
+    animation-delay: 15s;
+    animation-duration: 3.7s;
+}
+
+.shooting-star:nth-child(8) {
+    top: 50%;
+    right: -140px;
+    width: 130px;
+    animation-delay: 18s;
+    animation-duration: 3.9s;
+}
+
+/* 动画定义 */
+@keyframes stars-move {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-100px);
+    }
+}
+
+@keyframes stars-twinkle {
+    0% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes shooting {
+    0% {
+        opacity: 0;
+        transform: translateX(0) translateY(0) rotate(-45deg);
+    }
+    5% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-120vw) translateY(120vh) rotate(-45deg);
+    }
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    line-height: 1.6;
+    color: #fff;
+    overflow-x: hidden;
+    background: transparent; /* 让星空背景透过 */
+    position: relative;
+}
+
+/* 导航栏样式 */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 15px 0;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* 让服务器信息和联系我们紧贴 */
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: block;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* 下拉菜单样式 */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, 0.95);
+    min-width: 200px;
+    border-radius: 10px;
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-content a {
+    color: #fff;
+    padding: 12px 20px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    padding-left: 30px;
+}
+
+/* 登录按钮样式 */
+.login-btn {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* 用户区域样式 */
+.user-area {
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.username {
+    color: white;
+    font-weight: bold;
+    padding: 12px 20px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.username:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* 用户下拉菜单 */
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    min-width: 120px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    margin-top: 8px;
+}
+
+.user-info:hover .user-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.user-dropdown a {
+    display: block;
+    padding: 12px 20px;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.user-dropdown a:hover {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    transform: translateX(5px);
+}
+
+/* 主标题区域 */
+.hero-section {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4));
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero-content {
+    z-index: 2;
+}
+
+.main-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 5rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 3s ease-in-out infinite;
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.main-title:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.8))
+            drop-shadow(0 0 50px rgba(78, 205, 196, 0.6))
+            drop-shadow(0 0 70px rgba(69, 183, 209, 0.4));
+    animation: pulseGlow 1s ease-in-out infinite;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    opacity: 0.8;
+    font-weight: 300;
+    letter-spacing: 3px;
+}
+
+/* 动画效果 */
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { 
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 30px rgba(255, 107, 107, 0.8))
+                drop-shadow(0 0 50px rgba(78, 205, 196, 0.6))
+                drop-shadow(0 0 70px rgba(69, 183, 209, 0.4));
+    }
+    50% { 
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 40px rgba(255, 107, 107, 1))
+                drop-shadow(0 0 60px rgba(78, 205, 196, 0.8))
+                drop-shadow(0 0 80px rgba(69, 183, 209, 0.6));
+    }
+}
+
+/* 服务器介绍区域 */
+.server-section {
+    padding: 80px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: rgba(10, 10, 20, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.server-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.server-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+    animation: neon-glow 1.5s ease-in-out infinite alternate;
+}
+
+.server-subtitle {
+    font-size: 1.2rem;
+    color: #00ffff;
+    margin-bottom: 40px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #00ffff, #00bcd4, #00ffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: subtitle-shimmer 2s linear infinite;
+    position: relative;
+    display: inline-block;
+    padding: 5px 15px;
+    border: 1px solid #00ffff;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+@keyframes subtitle-shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+/* 轮播图样式 */
+.carousel-container {
+    position: relative;
+    width: 90vw; /* 使用视口宽度 */
+    max-width: 90vw;
+    margin: 0;
+    padding: 0;
+    left: 50%;
+    transform: translateX(-50%); /* 居中对齐 */
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-slides {
+    position: relative;
+    height: 80vh; /* 增加高度以适应更大的图片 */
+    min-height: 600px; /* 确保最小高度 */
+    max-height: 800px; /* 添加最大高度限制 */
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.slide-content {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px 20px; /* 减少内边距给文字更多空间 */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* 改为从顶部开始布局 */
+    align-items: center;
+    text-align: center;
+    max-width: 95%; /* 内容最大宽度为95% */
+    width: 95%; /* 宽度为95% */
+    margin: 0 auto;
+    overflow-y: auto; /* 添加垂直滚动 */
+}
+
+.slide-image {
+    width: 70vw; /* 使用视口宽度的70% */
+    max-width: 900px; /* 最大宽度限制 */
+    min-width: 300px; /* 最小宽度限制 */
+    height: 50vh; /* 使用视口高度的50% */
+    max-height: 500px; /* 最大高度限制 */
+    min-height: 250px; /* 最小高度限制 */
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.slide-image:hover {
+    transform: scale(1.05);
+}
+
+.slide-content h3 {
+    font-size: 1.8rem;
+    margin: 20px 0 15px 0; /* 增加上边距 */
+    color: #4ecdc4;
+}
+
+.slide-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.9;
+    max-width: 100%;
+    margin-bottom: 20px; /* 增加下边距 */
+    flex: 1; /* 让文字区域自适应高度 */
+    display: flex;
+    align-items: center; /* 文字垂直居中 */
+}
+
+/* 轮播按钮 */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 28px;
+    padding: 18px 22px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.next-btn {
+    right: 30px;
+}
+
+.prev-btn {
+    left: 30px;
+}
+
+/* 服主介绍区域 */
+.owner-section {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+    padding: 100px 0;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.owner-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.owner-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.owner-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.owner-avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.owner-avatar:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.owner-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.owner-details h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.owner-details p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+/* Footer样式 */
+.footer {
+    background: linear-gradient(135deg, rgba(30, 60, 114, 0.4) 0%, rgba(42, 82, 152, 0.4) 100%);
+    padding: 50px 0;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-info {
+    margin-bottom: 30px;
+}
+
+.footer-info p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.footer-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.footer-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* 弹窗样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: #fff;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #ff6b6b;
+}
+
+.contact-image {
+    max-width: 400px;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    object-fit: contain;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 3rem;
+    }
+    
+    .server-title {
+        font-size: 2rem;
+    }
+      .nav-container {
+        padding: 0 15px; /* 减少内边距以节省空间 */
+    }
+    
+    .nav-left {
+        gap: 5px; /* 减少间距 */
+    }
+    
+    .nav-link {
+        padding: 8px 15px; /* 减少按钮内边距 */
+        font-size: 0.9rem; /* 稍微减小字体 */
+    }
+    
+    .carousel-container {
+        width: 100vw;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+      .carousel-slides {
+        height: 70vh;
+        min-height: 500px;
+        max-height: 700px;
+    }
+      .slide-content {
+        padding: 25px 15px; /* 减少内边距 */
+        width: 90%;
+        max-width: 90%;
+        justify-content: flex-start; /* 从顶部开始布局 */
+    }
+      .slide-image {
+        width: 85vw; /* 移动端使用85%视口宽度 */
+        max-width: 600px;
+        min-width: 280px;
+        height: 40vh; /* 移动端使用40%视口高度 */
+        max-height: 350px;
+        min-height: 200px;
+        margin-bottom: 20px;
+    }
+    
+    .slide-content h3 {
+        font-size: 1.5rem;
+        margin: 15px 0 10px 0;
+    }
+    
+    .slide-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .carousel-btn {
+        font-size: 20px;
+        padding: 12px 16px;
+    }
+    
+    .next-btn {
+        right: 15px;
+    }
+    
+    .prev-btn {
+        left: 15px;
+    }
+    
+    .owner-info {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 10px;
+    }
+    
+    .nav-left {
+        gap: 2px;
+    }
+    
+    .nav-link {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .login-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .carousel-btn {
+        font-size: 16px;
+        padding: 8px 12px;
+        background: rgba(255, 255, 255, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    .next-btn {
+        right: 5px;
+    }
+    
+    .prev-btn {
+        left: 5px;
+    }
+    
+    .carousel-slides {
+        height: 60vh;
+        min-height: 400px;
+        max-height: 500px;
+    }
+    
+    .slide-content {
+        padding: 15px 10px; /* 减少内边距给内容更多空间 */
+        width: 85%;
+        max-width: 85%;
+        justify-content: flex-start; /* 确保从顶部开始布局 */
+    }
+      .slide-image {
+        width: 80vw; /* 小屏幕使用80%视口宽度 */
+        max-width: 400px;
+        min-width: 250px;
+        height: 30vh; /* 小屏幕使用30%视口高度 */
+        max-height: 250px;
+        min-height: 180px;
+    }
+    
+    .slide-content h3 {
+        font-size: 1.3rem;
+        margin: 10px 0 8px 0;
+    }    .slide-content p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
+    .contact-image {
+        max-width: 250px;
+        max-height: 300px;
+    }
+}
+
+/* 极小屏幕优化 (320px以下) */
+@media (max-width: 320px) {
+    .nav-link {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+    }
+    
+    .login-btn {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+    
+    .nav-container {
+        padding: 0 5px;
+    }
+    
+    .contact-image {
+        max-width: 200px;
+        max-height: 250px;
+    }
+}
+
+/* 滚动平滑效果 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #ff5252, #26a69a);
+}
+
+/* 页面加载动画 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 自动轮播动画 */
+@keyframes autoSlide {
+    0% { transform: translateX(0); }
+    33.33% { transform: translateX(-100%); }
+    66.66% { transform: translateX(-200%); }
+    100% { transform: translateX(0); }
+}

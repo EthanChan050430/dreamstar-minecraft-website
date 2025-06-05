@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自由公会 - 星梦服务器</title>    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="guild-styles.css">
+    <link rel="stylesheet" href="../ai-assistant.css">
+</head>
+<body>
+    <!-- 星空背景 -->
+    <div class="starry-sky">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+        <div class="clouds"></div>
+    </div>
+
+    <!-- 导航栏 -->    <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">服务器</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../server/service_01.html">生存服</a></li>
+                        <li><a href="../server/service_02.html">空岛服</a></li>
+                        <li><a href="../server/service_03.html">32k生存服</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">公会</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gh_01.html">阿拜多斯公会</a></li>
+                        <li><a href="gh_02.html">流量农家乐</a></li>
+                        <li><a href="gh_03.html">群鹰之地</a></li>
+                        <li><a href="gh_04.html" class="active">自由公会</a></li>
+                        <li><a href="gh_05.html">理想主义公会</a></li>
+                        <li><a href="gh_06.html">背叛公会</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="../index.html#contact" class="nav-link">联系我们</a>
+                </li>
+                <li class="nav-item" id="userMenuItem" style="display: none;">
+                    <a href="#" class="nav-link user-menu-toggle" id="userMenuToggle">
+                        <span id="userDisplayName">用户</span> ▼
+                    </a>
+                    <ul class="dropdown-menu user-dropdown">
+                        <li><a href="#" id="logoutLink">退出登录</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item" id="loginMenuItem">
+                    <a href="../login/login.html" class="nav-link">登录</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 公会主体内容 -->
+    <main class="guild-main">
+        <!-- 公会标题部分 -->
+        <section class="guild-hero">
+            <div class="guild-hero-content">
+                <div class="guild-title-container">
+                    <h1 class="guild-title">自由公会</h1>
+                    <p class="guild-subtitle">自由无界，梦想无限</p>
+                </div>
+                <div class="guild-emblem">
+                    <div class="emblem-container">
+                        <img src="../images/ziyou-emblem.png" alt="自由公会徽章" class="emblem-image" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'color:#00bfff;font-size:60px;line-height:150px;\'>🕊️</div>'">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 公会信息卡片组 -->
+        <section class="guild-info-cards">
+            <div class="cards-container">
+                <!-- 公会简介卡片 -->
+                <div class="info-card intro-card" data-offset="0">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会简介</h2>
+                            <div class="card-icon">📜</div>
+                        </div>
+                        <div class="card-content">
+                            <p class="guild-description">
+                                自由公会，致力于打造一个包容、开放、自由的玩家社区。我们鼓励每一位成员追逐自己的梦想，探索属于自己的游戏世界。无论你是冒险家、建筑师、社交达人还是休闲玩家，都能在这里找到归属。自由公会没有繁琐的规章制度，只有彼此的尊重与支持。我们相信，真正的乐趣源于自由的选择和无拘的创造。加入自由公会，让我们一起畅游星梦，书写属于自己的精彩篇章！
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会成员卡片 -->
+                <div class="info-card members-card" data-offset="1">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">核心成员</h2>
+                            <div class="card-icon">👑</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="members-grid">
+                                <div class="member-item">
+                                    <div class="member-name">星晓晨152</div>
+                                    <div class="member-role">公会会长</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">喜欢猫的gk</div>
+                                    <div class="member-role">副会长</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">透透透明鱼</div>
+                                    <div class="member-role">长老</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">仙女沫兮喔</div>
+                                    <div class="member-role">长老</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">屑_yun_乄</div>
+                                    <div class="member-role">精英成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">屑文明入</div>
+                                    <div class="member-role">精英成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">凶暴梦特学美术</div>
+                                    <div class="member-role">精英成员</div>
+                                </div>
+                                <div class="member-item">
+                                    <div class="member-name">复虚物先导</div>
+                                    <div class="member-role">精英成员</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会成就卡片 -->
+                <div class="info-card achievements-card" data-offset="2">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会成就</h2>
+                            <div class="card-icon">🏆</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="achievements-list">
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">🏯</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">自由之城</div>
+                                        <div class="achievement-desc">建造了服务器最具创意与开放精神的城市</div>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">👑</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">服务器霸主</div>
+                                        <div class="achievement-desc">在各项竞赛中均占据统治地位</div>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">💰</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">财富帝国</div>
+                                        <div class="achievement-desc">建立了庞大的经济贸易体系</div>
+                                    </div>
+                                </div>
+                                <div class="achievement-item">
+                                    <div class="achievement-icon">🌟</div>
+                                    <div class="achievement-text">
+                                        <div class="achievement-title">传奇创造者</div>
+                                        <div class="achievement-desc">创造了无数令人惊叹的奇迹</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会活动卡片 -->
+                <div class="info-card activities-card" data-offset="3">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会活动</h2>
+                            <div class="card-icon">🎯</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="activities-timeline">
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年1月10日</div>
+                                    <div class="activity-title">自由集会</div>
+                                    <div class="activity-desc">举办首次自由主题公会集会</div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年2月14日</div>
+                                    <div class="activity-title">龙宫建设</div>
+                                    <div class="activity-desc">启动了史无前例的龙宫城建设工程</div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年2月18日</div>
+                                    <div class="activity-title">梦想之旅</div>
+                                    <div class="activity-desc">组织成员探索服务器新世界</div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年3月22日</div>
+                                    <div class="activity-title">创意大赛</div>
+                                    <div class="activity-desc">发起自由主题建筑与创意大赛</div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-date">2024年4月12日</div>
+                                    <div class="activity-title">互助日</div>
+                                    <div class="activity-desc">举办全服互助交流活动</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 公会规则卡片 -->
+                <div class="info-card rules-card" data-offset="4">
+                    <div class="card-glass">
+                        <div class="card-header">
+                            <h2 class="card-title">公会规则</h2>
+                            <div class="card-icon">📚</div>
+                        </div>
+                        <div class="card-content">
+                            <ol class="rules-list">
+                                <li>尊重公会内每一位成员，禁止任何形式的歧视和侮辱。</li>
+                                <li>积极参与公会活动，为公会的发展贡献自己的力量。</li>
+                                <li>维护公会的声誉，禁止在外散布公会的负面信息。</li>
+                                <li>遵守游戏规则，禁止使用任何第三方插件或作弊行为。</li>
+                                <li>如有违反规则行为，将视情况给予警告或开除公会处理。</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- 公会画廊 -->
+        <!-- 已删除公会风采内容 -->
+    </main>
+
+    <!-- 加入公会模态框 -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content guild-modal">
+            <span class="close">&times;</span>
+            <h2>申请加入自由公会</h2>
+            <form id="joinForm" class="join-form">
+                <div class="form-group">
+                    <label for="playerName">游戏昵称</label>
+                    <input type="text" id="playerName" name="playerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="joinReason">申请理由</label>
+                    <textarea id="joinReason" name="joinReason" rows="4" required placeholder="请简单介绍您的游戏经历和加入公会的理由..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contactQQ">联系QQ</label>
+                    <input type="text" id="contactQQ" name="contactQQ" required>
+                </div>
+                <button type="submit" class="submit-btn">提交申请</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 通知系统 -->
+    <div id="notification" class="notification"></div>    <script src="../script.js"></script>
+    <script src="guild-script.js"></script>
+    <script src="../ai-assistant.js"></script>
+</body>
+</html>

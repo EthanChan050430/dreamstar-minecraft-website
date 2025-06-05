@@ -1,0 +1,143 @@
+/* 32k生存服专用样式 - 紫金主题 */
+.hardcore-theme {
+    --primary-color: #7c2d12;
+    --secondary-color: #dc2626;
+    --accent-color: #f59e0b;
+    --text-color: #fff;
+    --glow-color: #f59e0b;
+}
+
+.hardcore-theme .particle-bg {
+    background: linear-gradient(45deg, #450a0a, #7c2d12, #dc2626);
+    background-size: 400% 400%;
+}
+
+.hardcore-theme .page-title {
+    background: linear-gradient(45deg, #dc2626, #f59e0b, #fbbf24);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hardcore-theme .glass-card {
+    background: rgba(124, 45, 18, 0.2);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    box-shadow: 0 8px 32px rgba(124, 45, 18, 0.3);
+}
+
+.hardcore-theme .nav-link.active {
+    background: linear-gradient(45deg, #dc2626, #f59e0b);
+}
+
+/* 硬核效果 */
+.hardcore-glow {
+    position: relative;
+    overflow: hidden;
+}
+
+.hardcore-glow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.3), transparent);
+    animation: scan 3s infinite;
+}
+
+@keyframes scan {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* 32K服特色样式覆盖 */
+.hardcore-theme .info-item {
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.hardcore-theme .info-item:hover {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.5);
+}
+
+.hardcore-theme .info-title {
+    color: #f59e0b;
+}
+
+.hardcore-theme .feature-list li::before {
+    content: '⚔️';
+}
+
+.hardcore-theme .chat-header {
+    background: linear-gradient(45deg, #dc2626, #f59e0b);
+}
+
+.hardcore-theme .chat-message {
+    border-left: 4px solid #f59e0b;
+}
+
+.hardcore-theme .chat-player {
+    color: #f59e0b;
+}
+
+.hardcore-theme .status-indicator {
+    background: #f59e0b;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+    }
+}
+
+/* 火焰效果 */
+.flame-effect {
+    position: relative;
+    background: linear-gradient(45deg, rgba(220, 38, 38, 0.1), rgba(245, 158, 11, 0.1));
+    border-radius: 20px;
+    border: 2px solid rgba(245, 158, 11, 0.3);
+    overflow: hidden;
+}
+
+.flame-effect::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #dc2626, #f59e0b, #dc2626);
+    background-size: 200% 100%;
+    animation: fireFlow 2s linear infinite;
+}
+
+@keyframes fireFlow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+
+/* 警告效果 */
+.warning-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    background: linear-gradient(45deg, #dc2626, #f59e0b);
+    color: white;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-left: 10px;
+    animation: warningPulse 2s infinite;
+}
+
+@keyframes warningPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
