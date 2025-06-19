@@ -1,5 +1,7 @@
 # 星梦服务器官网 ✨
 
+![mika_eating](https://i0.hdslb.com/bfs/article/26596f736686a3ef3ddd2009e6fc906f354558777.gif)
+
 > **跨越数字星河，筑梦无界之境** - 数字门户，连通星梦无垠
 
 一个现代化的Minecraft服务器官方网站，具有用户认证、公会系统和AI助手功能。
@@ -197,7 +199,7 @@
 ## 📞 联系我们
 
 - **服务器QQ群**: [点击加入](images/QQ_qun.jpg)
-- **项目作者**: EthanChan050430
+- **项目作者**: 帥気的男主角
 - **GitHub**: [https://github.com/EthanChan050430](https://github.com/EthanChan050430)
 
 ## 🎯 未来计划
