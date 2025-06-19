@@ -61,7 +61,7 @@ def add_security_headers(response):
         "style-src 'self' 'unsafe-inline'; "
         "connect-src 'self' https://dreamstarry.top:5001 http://dreamstarry.top:5000 "
         "https://localhost:5001 http://localhost:5000 "
-        "https://38.165.23.56:5001 http://38.165.23.56:5000; "
+        "https://YOUR_SERVICE_IP:5001 http://YOUR_SERVICE_IP:5000; "
         "img-src 'self' data:; "
         "font-src 'self'"
     )
@@ -398,7 +398,7 @@ def ai_proxy():
         
         # AI API配置
         ai_api_url = "https://llmapi.paratera.com/v1/chat/completions"
-        ai_api_key = "sk-Na65nBxJvtNa1Ncnzp_QsA"
+        ai_api_key = "YOUR_API_KEY"
         
         # 构建请求头
         headers = {
