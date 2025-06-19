@@ -6,7 +6,7 @@
 
 一个现代化的Minecraft服务器官方网站，具有用户认证、公会系统和AI助手功能。
 
-## ![你可以点击这里访问星梦服务器官网](https://dreamstarry.top)
+## [你可以点击这里访问星梦服务器官网](https://dreamstarry.top)
 
 ## 🌟 项目特色
 
