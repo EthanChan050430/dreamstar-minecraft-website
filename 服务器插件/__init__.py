@@ -205,7 +205,7 @@ class SuperLink(Plugin):
             },
             "消息转发配置": {
                 "启用消息转发": True,
-                "转发服务器地址": "101.34.205.89",  # 您的外部服务器地址
+                "转发服务器地址": "38.165.23.56",  # 您的外部服务器地址
                 "转发服务器端口": 9876,  # UDP端口，Flask通常5000，这里是UDP转发端口
             },
         }
@@ -247,7 +247,7 @@ class SuperLink(Plugin):
         # 初始化转发配置
         forward_cfg = self.cfg.get("消息转发配置", {})
         self.enable_forward = forward_cfg.get("启用消息转发", True)
-        self.forward_host = forward_cfg.get("转发服务器地址", "101.34.205.89") # 确保默认使用您的外部服务器
+        self.forward_host = forward_cfg.get("转发服务器地址", "38.165.23.56") # 确保默认使用您的外部服务器
         self.forward_port = forward_cfg.get("转发服务器端口", 9876)
 
     def init_funcs(self):
