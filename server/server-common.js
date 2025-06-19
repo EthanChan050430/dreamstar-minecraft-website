@@ -6,7 +6,8 @@ class ServerPageManager {
         this.currentPage = 'home';
         this.chatMessages = [];
         this.socket = null;
-          this.init();
+        this.debugMode = true; // 启用调试模式
+        this.init();
     }
 
     init() {
@@ -171,31 +172,109 @@ class ServerPageManager {
     async connectToChat() {
         console.log(`正在连接到${this.serverName}聊天系统...`);
         
+        // 设置连接中状态
+        this.updateChatStatus('connecting');
+        
         try {
-            // 测试API连接 - 支持远程服务器
-            const apiBase = window.location.hostname === 'localhost' 
-                ? 'http://localhost:5000' 
-                : 'http://101.34.205.89:5000';
-                
-            console.log(`使用API地址: ${apiBase}`);
+            // 自动适配协议 - 解决HTTPS页面访问HTTP API的混合内容问题
+            const protocol = window.location.protocol; // 获取当前页面协议 (http: 或 https:)
+            const hostname = window.location.hostname;
+            
+            // 根据当前页面协议选择API地址
+            let apiBase;
+            if (protocol === 'https:') {
+                // HTTPS页面 - 使用HTTPS聊天API（端口5001）
+                apiBase = hostname === 'localhost' 
+                    ? 'https://localhost:5001' 
+                    : `https://${hostname}:5001`;
+                console.log(`检测到HTTPS访问，使用HTTPS聊天API: ${apiBase}`);
+            } else {
+                // HTTP页面 - 使用HTTP API（端口5000）
+                apiBase = hostname === 'localhost' 
+                    ? 'http://localhost:5000' 
+                    : `http://${hostname}:5000`;
+                console.log(`使用HTTP聊天API: ${apiBase}`);
+            }
+            
+            console.log(`尝试连接聊天API地址: ${apiBase}`);
             
             const response = await fetch(`${apiBase}/api/servers`);
             if (response.ok) {
-                const data = await response.json();
-                console.log('聊天API连接成功，服务器列表:', data);
+                const data = await response.json();                console.log('✅ 聊天API连接成功，服务器列表:', data);
                 this.apiBase = apiBase;
                 this.updateChatStatus(true);
+                
+                // 调试信息：显示当前服务器名称和可用服务器
+                if (this.debugMode) {
+                    console.log('🔍 调试信息:');
+                    console.log(`   当前页面服务器: "${this.serverName}"`);
+                    console.log('   可用服务器列表:', Object.keys(data.servers || {}));
+                    console.log('   服务器详情:', data.servers);
+                }
+                
                 return true;
             } else {
-                console.warn('聊天API连接失败，状态码:', response.status);
-                this.updateChatStatus(false);
+                console.warn('❌ 聊天API连接失败，状态码:', response.status);
+                this.handleConnectionFailure(protocol, hostname);
                 return false;
             }
         } catch (error) {
-            console.warn('无法连接到聊天API，使用模拟数据:', error);
-            this.updateChatStatus(false);
+            console.warn('❌ 无法连接到聊天API:', error);
+            this.handleConnectionFailure(window.location.protocol, window.location.hostname);
             return false;
         }
+    }    // 处理连接失败
+    handleConnectionFailure(protocol, hostname) {
+        this.updateChatStatus(false);
+        
+        if (protocol === 'https:') {
+            console.error('🔒 HTTPS聊天服务器连接失败!');
+            console.error('💡 解决方案:');
+            console.error('1. 确保HTTPS版本的chat_server正在运行 (端口5001)');
+            console.error('2. 检查SSL证书配置是否正确');
+            console.error('3. 确保防火墙允许5001端口访问');
+            
+            // 在聊天容器中显示错误提示
+            const chatContainer = document.querySelector('.chat-messages');
+            if (chatContainer) {
+                chatContainer.innerHTML = `
+                    <div class="connection-error">
+                        <h4>🔒 HTTPS聊天服务器未连接</h4>
+                        <p>无法连接到HTTPS聊天服务器 (端口5001)。</p>
+                        <div class="error-solutions">
+                            <h5>请检查:</h5>
+                            <ol>
+                                <li>HTTPS版本的 chat_server.py 是否正在运行</li>
+                                <li>SSL证书文件是否正确配置</li>
+                                <li>防火墙是否允许5001端口访问</li>
+                                <li>服务器是否支持HTTPS连接</li>
+                            </ol>
+                            <p><strong>启动命令:</strong> <code>python3 chat_server.py</code></p>
+                        </div>
+                    </div>
+                `;
+            }
+        } else {
+            // HTTP连接失败，显示常规错误
+            const chatContainer = document.querySelector('.chat-messages');
+            if (chatContainer) {
+                chatContainer.innerHTML = `
+                    <div class="connection-error">
+                        <h4>❌ 聊天服务器未连接</h4>
+                        <p>无法连接到聊天服务器，请检查:</p>
+                        <ul>
+                            <li>chat_server.py 是否正在运行</li>
+                            <li>端口5000是否被占用</li>
+                            <li>防火墙设置是否正确</li>
+                        </ul>
+                        <p><strong>启动命令:</strong> <code>python3 chat_server.py</code></p>
+                    </div>
+                `;
+            }
+        }
+        
+        // 使用模拟数据
+        this.simulateChat();
     }
 
     // 开始聊天轮询
@@ -219,15 +298,26 @@ class ServerPageManager {
 
         try {            // 尝试多种服务器名称匹配
             const serverNameVariations = [
-                this.serverName,
-                this.serverName.replace('星梦', ''),
-                `星梦${this.serverName}`,
+                this.serverName,                    // 原始名称
+                this.serverName.replace('星梦', ''), // 去掉"星梦"前缀
+                `星梦${this.serverName}`,            // 添加"星梦"前缀
+                // 具体的服务器名称映射
                 this.serverName === '星梦1服' ? '星梦生存服' : this.serverName,
                 this.serverName === '星梦2服' ? '星梦空岛服' : this.serverName,
-                this.serverName === '星梦3服' ? '星梦32K服' : this.serverName
-            ];
-
-            console.log(`正在获取聊天消息，尝试的服务器名称:`, serverNameVariations);
+                this.serverName === '星梦3服' ? '星梦32K服' : this.serverName,
+                // 反向映射
+                this.serverName === '星梦生存服' ? '星梦1服' : this.serverName,
+                this.serverName === '星梦空岛服' ? '星梦2服' : this.serverName,
+                this.serverName === '星梦32K服' ? '星梦3服' : this.serverName,
+                // 去掉编号的版本
+                '生存服', '空岛服', '32K服'
+            ];            // 去重
+            const uniqueVariations = [...new Set(serverNameVariations)];
+            
+            if (this.debugMode) {
+                console.log(`🔍 正在获取聊天消息，当前页面服务器: "${this.serverName}"`);
+                console.log(`🔍 尝试的服务器名称变体:`, uniqueVariations);
+            }
 
             let allMessages = [];
             let foundMessages = false;
@@ -236,28 +326,36 @@ class ServerPageManager {
             try {
                 const allResponse = await fetch(`${this.apiBase}/api/messages?limit=50`);
                 if (allResponse.ok) {
-                    const allData = await allResponse.json();
-                    if (allData.success && allData.messages) {
-                        console.log('获取到所有消息:', allData.messages.length, '条');
+                    const allData = await allResponse.json();                    if (allData.success && allData.messages) {
+                        if (this.debugMode) {
+                            console.log(`🔍 获取到所有消息: ${allData.messages.length} 条`);
+                            // 显示每条消息的服务器名称以便调试
+                            const serverNames = [...new Set(allData.messages.map(msg => msg.server))];
+                            console.log(`🔍 消息中的服务器名称:`, serverNames);
+                        }
                         
                         // 过滤出匹配的服务器消息
                         allMessages = allData.messages.filter(msg => 
-                            serverNameVariations.includes(msg.server)
+                            uniqueVariations.includes(msg.server)
                         );
                         
                         if (allMessages.length > 0) {
                             foundMessages = true;
-                            console.log(`找到匹配的消息:`, allMessages.length, '条');
+                            if (this.debugMode) {
+                                console.log(`✅ 找到匹配的消息: ${allMessages.length} 条`);
+                                console.log(`🔍 匹配的消息:`, allMessages);
+                            }
+                        } else if (this.debugMode) {
+                            console.log(`⚠️  未找到匹配的消息`);
+                            console.log(`🔍 可能的服务器名称不匹配问题`);
                         }
                     }
                 }
             } catch (error) {
                 console.warn('获取所有消息失败:', error);
-            }
-
-            // 如果没有找到消息，尝试逐个服务器名称查询
+            }            // 如果没有找到消息，尝试逐个服务器名称查询
             if (!foundMessages) {
-                for (const serverName of serverNameVariations) {
+                for (const serverName of uniqueVariations) {
                     try {
                         const response = await fetch(`${this.apiBase}/api/chat/${encodeURIComponent(serverName)}`);
                         if (response.ok) {
@@ -273,29 +371,120 @@ class ServerPageManager {
                         console.warn(`查询服务器 "${serverName}" 失败:`, error);
                     }
                 }
-            }
-
-            if (foundMessages) {
+            }            if (foundMessages) {
                 this.updateChatDisplay(allMessages);
                 this.updateChatStatus(true);
+                if (this.debugMode) {
+                    console.log(`✅ 成功显示 ${allMessages.length} 条聊天消息`);
+                }
             } else {
-                console.log('未找到任何匹配的聊天消息，使用模拟数据');
+                if (this.debugMode) {
+                    console.log(`❌ 未找到任何匹配的聊天消息，使用模拟数据`);
+                    console.log(`🔍 请检查服务器名称映射是否正确`);
+                }
                 this.simulateChat();
             }
-            
-        } catch (error) {
+              } catch (error) {
             console.warn('获取聊天消息失败，使用模拟数据:', error);
             this.simulateChat();
         }
     }
 
-    // 更新聊天状态显示
-    updateChatStatus(connected) {
+    // 调试方法：手动测试聊天连接
+    async debugChatConnection() {
+        console.log(`🧪 开始调试聊天连接...`);
+        console.log(`🔍 当前服务器名称: "${this.serverName}"`);
+        console.log(`🔍 API地址: ${this.apiBase}`);
+        
+        if (!this.apiBase) {
+            console.error(`❌ API未连接，请先调用 connectToChat()`);
+            return;
+        }
+        
+        try {
+            // 测试服务器列表
+            const serversResponse = await fetch(`${this.apiBase}/api/servers`);
+            if (serversResponse.ok) {
+                const serversData = await serversResponse.json();
+                console.log(`✅ 服务器列表:`, serversData);
+                
+                // 测试获取所有消息
+                const messagesResponse = await fetch(`${this.apiBase}/api/messages?limit=50`);
+                if (messagesResponse.ok) {
+                    const messagesData = await messagesResponse.json();
+                    console.log(`✅ 所有消息 (${messagesData.messages?.length || 0} 条):`, messagesData);
+                    
+                    if (messagesData.messages && messagesData.messages.length > 0) {
+                        const serverNames = [...new Set(messagesData.messages.map(msg => msg.server))];
+                        console.log(`🔍 消息中包含的服务器名称:`, serverNames);
+                        console.log(`🔍 当前页面查找的服务器: "${this.serverName}"`);
+                        
+                        // 检查是否有匹配的消息
+                        const matchingMessages = messagesData.messages.filter(msg => 
+                            msg.server === this.serverName || 
+                            msg.server === '星梦32K服' && this.serverName === '星梦3服' ||
+                            msg.server === '星梦空岛服' && this.serverName === '星梦2服' ||
+                            msg.server === '星梦生存服' && this.serverName === '星梦1服'
+                        );
+                        
+                        if (matchingMessages.length > 0) {
+                            console.log(`✅ 找到匹配消息 ${matchingMessages.length} 条:`, matchingMessages);
+                        } else {
+                            console.log(`❌ 未找到匹配的消息`);
+                            console.log(`💡 建议检查服务器名称映射`);
+                        }
+                    }
+                } else {
+                    console.error(`❌ 获取消息失败:`, messagesResponse.status);
+                }
+            } else {
+                console.error(`❌ 获取服务器列表失败:`, serversResponse.status);
+            }
+        } catch (error) {
+            console.error(`❌ 调试连接失败:`, error);
+        }
+    }// 更新聊天状态显示
+    updateChatStatus(status) {
+        // status可以是: true/false/'connecting'
+        const connected = status === true;
+        const connecting = status === 'connecting';
+        
+        // 更新原有的状态指示器
         const statusIndicators = document.querySelectorAll('.chat-header .status-indicator');
         statusIndicators.forEach(indicator => {
-            indicator.className = `status-indicator ${connected ? 'online' : 'offline'}`;
+            if (connecting) {
+                indicator.className = 'status-indicator connecting';
+            } else {
+                indicator.className = `status-indicator ${connected ? 'online' : 'offline'}`;
+            }
         });
-    }    // 更新聊天消息显示 - 优化动画版本
+        
+        // 更新或创建新的聊天状态指示器
+        const chatSections = document.querySelectorAll('.chat-section');
+        chatSections.forEach(section => {
+            let statusEl = section.querySelector('.chat-status');
+            if (!statusEl) {
+                statusEl = document.createElement('div');
+                statusEl.className = 'chat-status';
+                const header = section.querySelector('.chat-header') || section.querySelector('h3');
+                if (header && header.parentNode) {
+                    header.parentNode.style.position = 'relative';
+                    header.parentNode.appendChild(statusEl);
+                }
+            }
+            
+            if (connecting) {
+                statusEl.className = 'chat-status connecting';
+                statusEl.title = '正在连接聊天服务器...';
+            } else {
+                statusEl.className = `chat-status ${connected ? 'connected' : 'disconnected'}`;
+                statusEl.title = connected ? '聊天服务器已连接' : '聊天服务器未连接';
+            }
+        });
+        
+        const statusText = connecting ? '连接中...' : (connected ? '已连接' : '未连接');
+        console.log(`聊天状态更新: ${statusText}`);
+    }// 更新聊天消息显示 - 优化动画版本
     updateChatDisplay(messages) {
         const chatContainer = document.querySelector('.chat-messages');
         if (!chatContainer) {
@@ -390,7 +579,7 @@ class ServerPageManager {
     // 模拟聊天消息（实际应用中应该从服务器获取真实消息）
     simulateChat() {
         if (Math.random() > 0.7) { // 30%概率生成新消息
-            const players = ['玩家A', '建筑大师', '冒险者小明', '挖矿王', '农夫老李'];
+            const players = ['一只小鳄鱼', '修噬星', '悔恨天沧', '矫健的大蛇', '了匀'];
             const messages = [
                 '大家好！今天天气不错啊',
                 '谁要一起去挖矿？',
@@ -497,16 +686,19 @@ class ServerPageManager {
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 平滑滚动
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // 平滑滚动    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            const href = this.getAttribute('href');
+            // 检查href是否为空或只是"#"
+            if (href && href !== '#' && href.length > 1) {
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }
         });
     });

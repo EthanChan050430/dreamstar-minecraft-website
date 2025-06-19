@@ -183,13 +183,23 @@
             </div>
         </section>
     </main>    <script src="server-common.js"></script>
-    <script src="../ai-assistant.js"></script>
-    <script>
+    <script src="../ai-assistant.js"></script>    <script>
         // 初始化生存服页面管理器
         const survivalServer = new ServerPageManager('星梦1服');
         
         // 页面加载时立即更新一次状态显示固定值
         survivalServer.updateServerStatus();
+        
+        // 添加全局调试对象
+        window.chatDebug = {
+            server: survivalServer,
+            testConnection: () => survivalServer.debugChatConnection(),
+            forceRefresh: () => survivalServer.fetchChatMessages(),
+            showServerName: () => console.log(`当前服务器: ${survivalServer.serverName}`),
+            checkAPI: () => console.log(`API地址: ${survivalServer.apiBase}`)
+        };
+        
+        console.log('🔧 调试工具已加载，在控制台中输入 chatDebug.testConnection() 进行测试');
     </script>
 </body>
 </html>

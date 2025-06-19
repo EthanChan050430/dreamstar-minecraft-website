@@ -186,13 +186,23 @@
             </div>
         </section>
     </main>    <script src="server-common.js"></script>
-    <script src="../ai-assistant.js"></script>
-    <script>
+    <script src="../ai-assistant.js"></script>    <script>
         // 初始化空岛服页面管理器
         const skyblockServer = new ServerPageManager('星梦2服');
         
         // 页面加载时立即更新一次状态显示固定值
         skyblockServer.updateServerStatus();
+        
+        // 添加全局调试对象
+        window.chatDebug = {
+            server: skyblockServer,
+            testConnection: () => skyblockServer.debugChatConnection(),
+            forceRefresh: () => skyblockServer.fetchChatMessages(),
+            showServerName: () => console.log(`当前服务器: ${skyblockServer.serverName}`),
+            checkAPI: () => console.log(`API地址: ${skyblockServer.apiBase}`)
+        };
+        
+        console.log('🔧 调试工具已加载，在控制台中输入 chatDebug.testConnection() 进行测试');
     </script>
 </body>
 </html>

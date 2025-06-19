@@ -91,7 +91,11 @@ SERVER_NAME_MAPPING = {
     # 前端使用的简短名称也支持
     "生存服": "星梦生存服",
     "空岛服": "星梦空岛服",
-    "32K服": "星梦32K服"
+    "32K服": "星梦32K服",
+    # 反向映射 - 支持前端查询
+    "星梦生存服": "星梦生存服",
+    "星梦空岛服": "星梦空岛服",
+    "星梦32K服": "星梦32K服"
 }
 
 # 创建全局消息存储
@@ -331,22 +335,52 @@ def test_message():
 
 # 主函数
 def main():
+    import os
+    import ssl
+    
     # 启动UDP服务器
     udp_server.start()
     
+    # 检查SSL证书文件
+    ssl_cert = 'dreamstarry.top.pem'
+    ssl_key = 'dreamstarry.top.key'
+    ssl_enabled = os.path.exists(ssl_cert) and os.path.exists(ssl_key)
+    
     try:
-        print(f"🌐 Flask服务器启动中...")
-        print(f"🎯 HTTP API: http://localhost:5000")
-        print(f"📡 UDP监听: {udp_server.host}:{udp_server.port}")
-        print(f"🎮 等待服务器插件连接...")
+        print(f"🌐 Flask聊天服务器启动中...")
         
-        # 启动Flask应用
-        app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
+        if ssl_enabled:
+            print(f"🔒 HTTPS API: https://dreamstarry.top:5001")
+            print(f"🔒 本地HTTPS: https://localhost:5001")
+            print(f"📡 UDP监听: {udp_server.host}:{udp_server.port}")
+            print(f"🎮 等待服务器插件连接...")
+            print(f"✅ SSL证书已加载，启用HTTPS模式")
+            
+            # 创建SSL上下文
+            context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+            context.load_cert_chain(ssl_cert, ssl_key)
+            
+            # 启动HTTPS Flask应用
+            app.run(host='0.0.0.0', port=5001, debug=False, threaded=True, ssl_context=context)
+        else:
+            print(f"⚠️  未找到SSL证书，使用HTTP模式")
+            print(f"🎯 HTTP API: http://localhost:5000")
+            print(f"🌐 公网HTTP: http://38.165.23.56:5000")  
+            print(f"📡 UDP监听: {udp_server.host}:{udp_server.port}")
+            print(f"🎮 等待服务器插件连接...")
+            
+            # 启动HTTP Flask应用
+            app.run(host='0.0.0.0', port=5000, debug=False, threaded=True)
+            
     except KeyboardInterrupt:
         print("\n🛑 程序被用户中断")
+    except Exception as e:
+        print(f"❌ 服务器启动失败: {e}")
+        if ssl_enabled:
+            print("💡 如果是SSL错误，请检查证书文件是否正确")
     finally:
         udp_server.stop()
-        print("👋 服务器已关闭")
+        print("👋 聊天服务器已关闭")
 
 if __name__ == "__main__":
     main()

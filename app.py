@@ -15,6 +15,7 @@ import os
 from datetime import datetime, timedelta
 import threading
 import time
+from functools import wraps
 
 app = Flask(__name__)
 app.secret_key = 'dreamstar_server_secret_key_2024'  # 生产环境应使用更安全的密钥
@@ -23,6 +24,50 @@ CORS(app)
 # 配置
 CSV_FILE = 'users.csv'
 RESET_TOKENS_FILE = 'reset_tokens.csv'
+
+# HTTPS重定向装饰器
+def require_https(f):
+    """强制使用HTTPS的装饰器"""
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # 检查是否使用HTTPS
+        if not request.is_secure and not request.headers.get('X-Forwarded-Proto') == 'https':
+            # 如果启用了SSL且不在调试模式下，重定向到HTTPS
+            if not app.debug and 'ssl_enabled' in globals() and ssl_enabled:
+                return redirect(request.url.replace('http://', 'https://', 1))
+        return f(*args, **kwargs)
+    return decorated_function
+
+# 安全头配置
+@app.after_request
+def add_security_headers(response):
+    """添加安全头"""
+    # 检查是否使用HTTPS连接
+    is_https = request.is_secure or request.headers.get('X-Forwarded-Proto') == 'https'
+    
+    if is_https:
+        # 仅在HTTPS连接时添加HTTPS专用安全头
+        response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains; preload'
+      # 通用安全头（HTTP和HTTPS都适用）
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-XSS-Protection'] = '1; mode=block'
+    response.headers['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+    
+    # 修改CSP以允许连接到聊天API
+    csp_policy = (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline'; "
+        "style-src 'self' 'unsafe-inline'; "
+        "connect-src 'self' https://dreamstarry.top:5001 http://dreamstarry.top:5000 "
+        "https://localhost:5001 http://localhost:5000 "
+        "https://38.165.23.56:5001 http://38.165.23.56:5000; "
+        "img-src 'self' data:; "
+        "font-src 'self'"
+    )
+    response.headers['Content-Security-Policy'] = csp_policy
+    
+    return response
 
 # 初始化CSV文件
 def init_csv_files():
@@ -341,6 +386,67 @@ def get_user():
         })
     return jsonify({'success': False, 'message': '未登录'}), 401
 
+# AI API代理端点
+@app.route('/api/ai-proxy', methods=['POST'])
+def ai_proxy():
+    """AI API代理，解决前端CORS问题"""
+    import requests
+    
+    try:
+        # 获取前端发送的请求数据
+        request_data = request.get_json()
+        
+        # AI API配置
+        ai_api_url = "https://llmapi.paratera.com/v1/chat/completions"
+        ai_api_key = "sk-Na65nBxJvtNa1Ncnzp_QsA"
+        
+        # 构建请求头
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {ai_api_key}'
+        }
+        
+        # 发送请求到AI API
+        ai_response = requests.post(
+            ai_api_url,
+            headers=headers,
+            json=request_data,
+            timeout=30
+        )
+        
+        # 返回AI API的响应
+        if ai_response.status_code == 200:
+            return jsonify(ai_response.json())
+        else:
+            return jsonify({
+                'error': {
+                    'message': f'AI API请求失败: {ai_response.status_code}',
+                    'details': ai_response.text
+                }
+            }), ai_response.status_code
+            
+    except requests.exceptions.Timeout:
+        return jsonify({
+            'error': {
+                'message': 'AI API请求超时',
+                'details': '请求超过30秒未响应'
+            }
+        }), 408
+    except requests.exceptions.ConnectionError:
+        return jsonify({
+            'error': {
+                'message': 'AI API连接失败',
+                'details': '无法连接到AI服务器'
+            }
+        }), 503
+    except Exception as e:
+        return jsonify({
+            'error': {
+                'message': 'AI API代理错误',
+                'details': str(e)
+            }
+        }), 500
+
 # 初始化应用
 def init_app():
     """初始化应用"""
@@ -358,16 +464,39 @@ def init_app():
 if __name__ == '__main__':
     init_app()
     
-    # 创建两个应用实例，分别运行在不同端口
-    import multiprocessing
-    from werkzeug.serving import run_simple
+    # SSL证书配置 - 使用dreamstarry.top域名证书
+    SSL_CERT_PATH = 'dreamstarry.top.pem'        # SSL证书文件路径
+    SSL_KEY_PATH = 'dreamstarry.top.key'         # SSL私钥文件路径
+    SSL_CHAIN_PATH = 'dreamstarry.top_chain.pem' # SSL证书链文件路径
     
-    def run_main_server():
-        """运行主服务器（端口80）"""
-        app.run(host='0.0.0.0', port=80, debug=True)
+    # 检查SSL证书文件是否存在
+    ssl_enabled = (os.path.exists(SSL_CERT_PATH) and 
+                   os.path.exists(SSL_KEY_PATH) and 
+                   os.path.exists(SSL_CHAIN_PATH))
+    
+    if ssl_enabled:
+        print("✅ 检测到dreamstarry.top SSL证书文件，启用HTTPS...")
+        # 创建包含证书链的完整证书文件
+        combined_cert_path = 'dreamstarry.top_combined.pem'
+        try:
+            with open(combined_cert_path, 'w', encoding='utf-8') as combined_file:
+                # 写入主证书
+                with open(SSL_CERT_PATH, 'r', encoding='utf-8') as cert_file:
+                    combined_file.write(cert_file.read())
+                # 写入证书链
+                with open(SSL_CHAIN_PATH, 'r', encoding='utf-8') as chain_file:
+                    combined_file.write(chain_file.read())
+            ssl_context = (combined_cert_path, SSL_KEY_PATH)
+            print("✅ SSL证书链已合并完成")
+        except Exception as e:
+            print(f"❌ SSL证书合并失败: {e}")
+            ssl_context = (SSL_CERT_PATH, SSL_KEY_PATH)  # 降级使用单个证书
+    else:
+        print("⚠️  未找到dreamstarry.top SSL证书文件，使用HTTP模式...")
+        ssl_context = None
     
     def run_auth_server():
-        """运行认证服务器（端口2000）"""
+        """运行认证服务器"""
         auth_app = Flask(__name__)
         auth_app.secret_key = app.secret_key
         CORS(auth_app)
@@ -388,17 +517,41 @@ if __name__ == '__main__':
         @auth_app.route('/<path:filename>')
         def serve_auth_static(filename):
             return send_from_directory('.', filename)
-        
-        auth_app.run(host='0.0.0.0', port=2000, debug=True)
+            # 认证服务器端口配置
+        if ssl_enabled:
+            print("🔐 认证服务器启动: https://dreamstarry.top:2001")
+            auth_app.run(host='0.0.0.0', port=2001, debug=True, ssl_context=ssl_context)
+        else:
+            print("🔐 认证服务器启动: http://dreamstarry.top:2000")
+            auth_app.run(host='0.0.0.0', port=2000, debug=True)
+      # 启动信息
+    if ssl_enabled:
+        print("🚀 启动星梦服务器官网 (HTTPS模式)...")
+        print("🌐 主页服务器: https://dreamstarry.top")
+        print("🔐 认证服务器: https://dreamstarry.top:2001")
+        print("📋 本地访问: https://localhost:443")
+    else:
+        print("🚀 启动星梦服务器官网 (HTTP模式)...")
+        print("🌐 主页服务器: http://dreamstarry.top")
+        print("🔐 认证服务器: http://dreamstarry.top:2000")
+        print("📋 本地访问: http://localhost:80")
     
-    print("启动星梦服务器官网...")
-    print("主页服务器: http://localhost")
-    print("登录服务器: http://localhost:2000")
-    
-    # 同时运行两个服务器
+    # 启动主服务器
     try:
-        # 在生产环境中，建议使用 gunicorn 或其他 WSGI 服务器
-        app.run(host='0.0.0.0', port=80, debug=True)
-    except PermissionError:
-        print("无法绑定到端口80，需要管理员权限。正在使用端口8080...")
-        app.run(host='0.0.0.0', port=8080, debug=True)
+        if ssl_enabled:
+            # HTTPS模式 - 端口443
+            try:
+                app.run(host='0.0.0.0', port=443, debug=True, ssl_context=ssl_context)
+            except PermissionError:
+                print("⚠️  无法绑定到端口443，需要管理员权限。正在使用端口8443...")
+                app.run(host='0.0.0.0', port=8443, debug=True, ssl_context=ssl_context)
+        else:
+            # HTTP模式 - 端口80
+            try:
+                app.run(host='0.0.0.0', port=80, debug=True)
+            except PermissionError:
+                print("⚠️  无法绑定到端口80，需要管理员权限。正在使用端口8080...")
+                app.run(host='0.0.0.0', port=8080, debug=True)
+    except Exception as e:
+        print(f"❌ 服务器启动失败: {e}")
+        print("请检查SSL证书文件是否正确或端口是否被占用")

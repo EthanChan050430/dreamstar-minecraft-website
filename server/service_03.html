@@ -174,13 +174,27 @@
             </div>
         </section>
     </main>      <script src="server-common.js"></script>
-    <script src="../ai-assistant.js"></script>
-    <script>
+    <script src="../ai-assistant.js"></script>    <script>
         // 初始化32K服页面管理器
         const hardcoreServer = new ServerPageManager('星梦3服');
         
         // 页面加载时立即更新一次状态显示固定值
         hardcoreServer.updateServerStatus();
+        
+        // 添加全局调试对象，方便在控制台中测试
+        window.chatDebug = {
+            server: hardcoreServer,
+            testConnection: () => hardcoreServer.debugChatConnection(),
+            forceRefresh: () => hardcoreServer.fetchChatMessages(),
+            showServerName: () => console.log(`当前服务器: ${hardcoreServer.serverName}`),
+            checkAPI: () => console.log(`API地址: ${hardcoreServer.apiBase}`)
+        };
+        
+        console.log('🔧 调试工具已加载，在控制台中输入以下命令进行测试:');
+        console.log('chatDebug.testConnection() - 测试聊天连接');
+        console.log('chatDebug.forceRefresh() - 强制刷新消息');
+        console.log('chatDebug.showServerName() - 显示服务器名称');
+        console.log('chatDebug.checkAPI() - 检查API地址');
     </script>
 </body>
 </html>
