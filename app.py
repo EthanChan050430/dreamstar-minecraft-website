@@ -18,7 +18,7 @@ import time
 from functools import wraps
 
 app = Flask(__name__)
-app.secret_key = 'dreamstar_server_secret_key_2024'  # 生产环境应使用更安全的密钥
+app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(16))  # 生产环境应使用更安全的密钥
 CORS(app)
 
 # 配置
@@ -398,7 +398,7 @@ def ai_proxy():
         
         # AI API配置
         ai_api_url = "https://llmapi.paratera.com/v1/chat/completions"
-        ai_api_key = "YOUR_API_KEY"
+        ai_api_key = os.environ.get("AI_API_KEY", "")
         
         # 构建请求头
         headers = {
